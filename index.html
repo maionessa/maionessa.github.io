@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMINA — Salud & Glow Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--c:#FAF7F2;--d:#0D0D0D;--bl:#E8C4B8;--sg:#8BAF8E;--tc:#C8614A;--gd:#D4A853;--lv:#C5B8D9;--mt:#A8CFC8;--tx:#1A1A1A;--mu:#7A7A7A;--wh:#fff}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--c);color:var(--tx);overflow-x:hidden}
+*{cursor:none}
+#cursor{position:fixed;width:12px;height:12px;background:var(--tc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s;mix-blend-mode:multiply}
+#cring{position:fixed;width:36px;height:36px;border:1.5px solid var(--tc);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(250,247,242,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:padding .3s}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--d);text-decoration:none;cursor:none}
+.logo span{color:var(--tc)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--tx);transition:color .2s;position:relative;cursor:none}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--tc);transition:width .3s}
+.nav-links a:hover{color:var(--tc)}.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--d)!important;color:var(--c)!important;padding:9px 20px;border-radius:100px;font-size:11px!important}
+.nav-cta:hover{background:var(--tc)!important}.nav-cta::after{display:none!important}
+.bg1{background:linear-gradient(135deg,#F9E4DC,#F0B8A8)}
+.bg2{background:linear-gradient(135deg,#D4E8D4,#A8C8A8)}
+.bg3{background:linear-gradient(135deg,#E8DFF5,#C8BAE8)}
+.bg4{background:linear-gradient(135deg,#FFF4CC,#FFE580)}
+.bg5{background:linear-gradient(135deg,#D0E8F0,#A0C8E0)}
+.bg6{background:linear-gradient(135deg,#2A2A4A,#1A1A3A)}
+.bg7{background:linear-gradient(135deg,#3A4A3A,#5A7A5A)}
+.bg8{background:linear-gradient(135deg,#4A1A1A,#8A3A3A)}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:80px;overflow:hidden}
+.hero-l{display:flex;flex-direction:column;justify-content:center;padding:80px 48px}
+.htag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--tc);font-weight:600;margin-bottom:24px}
+.htag::before{content:'';display:block;width:32px;height:1.5px;background:var(--tc)}
+.htitle{font-family:'Playfair Display',serif;font-size:clamp(48px,5.5vw,80px);line-height:1.0;font-weight:900;color:var(--d);margin-bottom:24px}
+.htitle em{font-style:italic;color:var(--tc)}
+.hdesc{font-size:16px;line-height:1.7;color:var(--mu);max-width:400px;margin-bottom:44px}
+.hacts{display:flex;gap:16px;align-items:center}
+.btn-primary{background:var(--d);color:var(--c);padding:15px 32px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;border:none;transition:background .25s,transform .2s;display:inline-block;cursor:none}
+.btn-primary:hover{background:var(--tc);transform:translateY(-2px)}
+.btn-ghost{color:var(--d);font-size:14px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:8px;transition:gap .2s;cursor:none}
+.btn-ghost:hover{gap:14px;color:var(--tc)}
+.hstats{display:flex;gap:36px;margin-top:56px;padding-top:36px;border-top:1px solid rgba(0,0,0,.08)}
+.snum{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--d)}
+.slbl{font-size:11px;color:var(--mu);margin-top:4px;letter-spacing:1px}
+.hero-r{position:relative;overflow:hidden;background:var(--bl)}
+.hero-img-grid{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px}
+.himg{display:flex;align-items:center;justify-content:center;font-size:90px}
+.hfloat{position:absolute;bottom:50px;left:-15px;background:white;border-radius:14px;padding:14px 18px;box-shadow:0 20px 60px rgba(0,0,0,.12);display:flex;align-items:center;gap:10px;animation:float 3s ease-in-out infinite;z-index:5}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hf-icon{font-size:26px}.hf-t{font-size:12px;font-weight:600}.hf-s{font-size:11px;color:var(--mu)}
+/* MARQUEE */
+.mwrap{background:var(--d);padding:16px 0;overflow:hidden}
+.mtrack{display:flex;animation:mq 30s linear infinite;white-space:nowrap}
+.mi{display:inline-flex;align-items:center;gap:14px;padding:0 28px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:3px;color:var(--c)}
+.mdot{color:var(--tc);font-size:8px}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* SEARCH */
+.srch-sec{background:var(--wh);padding:36px 48px;border-bottom:1px solid rgba(0,0,0,.05)}
+.srch-lbl{text-align:center;font-size:11px;color:var(--mu);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}
+.srch-wrap{display:flex;gap:10px;max-width:580px;margin:0 auto;background:var(--c);border-radius:100px;padding:7px 7px 7px 22px;border:1.5px solid transparent;transition:border-color .3s}
+.srch-wrap:focus-within{border-color:var(--tc)}
+.srch-in{flex:1;border:none;background:transparent;outline:none;font-size:14px;font-family:'DM Sans',sans-serif}
+.srch-btn{background:var(--d);color:white;border:none;padding:11px 22px;border-radius:100px;font-size:12px;font-weight:600;cursor:none;font-family:'DM Sans',sans-serif;transition:background .2s}
+.srch-btn:hover{background:var(--tc)}
+.ptags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;justify-content:center}
+.ptag{font-size:12px;padding:5px 13px;border-radius:100px;background:var(--c);color:var(--mu);border:1px solid rgba(0,0,0,.08);text-decoration:none;transition:all .2s;cursor:none}
+.ptag:hover{background:var(--tc);color:white}
+/* SECTIONS */
+section{padding:80px 48px}
+.s-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+.s-eye{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--tc);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.s-eye::before{content:'';display:block;width:22px;height:1.5px;background:var(--tc)}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.1}
+.s-title em{font-style:italic;color:var(--tc)}
+.va{font-size:13px;font-weight:600;color:var(--d);text-decoration:none;display:flex;align-items:center;gap:8px;border-bottom:1.5px solid var(--d);padding-bottom:2px;transition:all .2s;white-space:nowrap;cursor:none}
+.va:hover{color:var(--tc);border-color:var(--tc)}
+.va-lt{color:rgba(255,255,255,.6)!important;border-color:rgba(255,255,255,.25)!important}
+.va-lt:hover{color:var(--bl)!important;border-color:var(--bl)!important}
+/* CATEGORIES */
+.cats-sec{background:var(--d);color:var(--c)}
+.cat-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}
+.cat-card{border-radius:18px;padding:24px 14px;text-align:center;cursor:none;transition:transform .3s,box-shadow .3s;text-decoration:none;display:block}
+.cat-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.cat-ic{font-size:36px;margin-bottom:10px;display:block}
+.cat-nm{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--d);margin-bottom:3px}
+.cat-cnt{font-size:10px;color:rgba(0,0,0,.45);font-weight:500}
+/* CARDS */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.acard{background:var(--wh);border-radius:18px;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:none;text-decoration:none;display:block;color:inherit}
+.acard:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1)}
+.acard-dark{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.acard-dark .ct,.acard-dark .cm{color:rgba(255,255,255,.45)}
+.acard-dark .ctitle{color:white}
+.ci{width:100%;height:150px;display:flex;align-items:center;justify-content:center;font-size:56px}
+.cb{padding:18px}
+.ct{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--tc);margin-bottom:8px;display:block}
+.ctitle{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;line-height:1.3;color:var(--d);margin-bottom:8px}
+.cm{font-size:11px;color:var(--mu)}
+/* FEATURED */
+.feat-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:auto auto;gap:22px}
+.feat-main{grid-row:1/3}
+.feat-main .ci{height:auto;aspect-ratio:3/4;font-size:96px}
+.feat-main .ctitle{font-size:22px;margin-bottom:10px}
+.cread{font-size:12px;font-weight:600;color:var(--tc);text-decoration:none;display:inline-flex;align-items:center;gap:5px;margin-top:10px;transition:gap .2s;cursor:none}
+.cread:hover{gap:10px}
+/* TRENDING */
+.tr-list{display:flex;flex-direction:column}
+.tr-item{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);text-decoration:none;color:inherit;cursor:none;transition:transform .2s}
+.tr-item:hover{transform:translateX(6px)}
+.tr-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--bl);text-align:center;line-height:1}
+.tr-t{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--d);margin-bottom:4px}
+.tr-m{font-size:12px;color:var(--mu)}
+.tr-e{font-size:28px}
+/* GLOW DARK SECTION */
+.dark-sec{background:linear-gradient(135deg,#1A0A0A 0%,#2D1515 50%,#0A1A0A 100%);color:var(--c);position:relative;overflow:hidden}
+.dark-sec::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 30%,rgba(200,97,74,.18) 0%,transparent 60%),radial-gradient(ellipse at 70% 70%,rgba(139,175,142,.12) 0%,transparent 60%);pointer-events:none}
+.gcard{border-radius:18px;overflow:hidden;cursor:none;transition:transform .3s;text-decoration:none;display:block}
+.gcard:hover{transform:scale(1.03)}
+.gci{aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;position:relative}
+.gcbg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:90px}
+.gcov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,transparent 60%)}
+.gcc{position:relative;z-index:2}
+.gc-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--bl);margin-bottom:6px}
+.gc-t{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:white;line-height:1.3;margin-bottom:8px}
+.gc-m{font-size:11px;color:rgba(255,255,255,.5)}
+/* TIPS */
+.tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tip-c{background:var(--wh);border-radius:22px;padding:32px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;display:block;color:inherit;cursor:none}
+.tip-c:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.tip-n{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--c);position:absolute;top:-8px;right:14px;line-height:1;pointer-events:none}
+.tip-ic{font-size:34px;margin-bottom:12px}
+.tip-t{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--d);margin-bottom:10px}
+.tip-tx{font-size:14px;line-height:1.7;color:var(--mu)}
+/* MASONRY */
+.mason{columns:4;column-gap:18px}
+.mason-item{break-inside:avoid;margin-bottom:18px;background:var(--wh);border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;display:block;color:inherit;cursor:none}
+.mason-item:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.1)}
+.mimg{width:100%;display:flex;align-items:center;justify-content:center}
+.mh1{height:140px;font-size:48px}.mh2{height:100px;font-size:40px}.mh3{height:180px;font-size:64px}
+.mb{padding:16px}
+.mtag{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--tc);margin-bottom:7px}
+.mt{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.35;color:var(--d);margin-bottom:6px}
+.mm{font-size:11px;color:var(--mu)}
+/* QUOTE */
+.quote-sec{text-align:center;padding:70px 48px}
+.bq{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,46px);font-weight:400;font-style:italic;color:var(--d);max-width:860px;margin:0 auto;line-height:1.4}
+.bq strong{font-style:normal;font-weight:900;color:var(--tc)}
+.qa{font-size:12px;color:var(--mu);margin-top:20px;letter-spacing:2px;text-transform:uppercase}
+/* NEWSLETTER */
+.nl-sec{background:var(--tc);text-align:center;padding:90px 48px;position:relative;overflow:hidden}
+.nl-sec::before{content:'GLOW';font-family:'Bebas Neue',sans-serif;font-size:260px;color:rgba(255,255,255,.07);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap}
+.nl-t{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:900;color:white;line-height:1.1;margin-bottom:16px;position:relative}
+.nl-s{font-size:15px;color:rgba(255,255,255,.8);margin-bottom:36px;position:relative}
+.nl-form{display:flex;gap:10px;max-width:460px;margin:0 auto;position:relative}
+.nl-in{flex:1;padding:16px 22px;border-radius:100px;border:none;font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
+.nl-btn{background:var(--d);color:white;border:none;padding:16px 28px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:none;font-family:'DM Sans',sans-serif;transition:background .2s;white-space:nowrap}
+.nl-btn:hover{background:#333}
+.nl-ok{display:none;color:white;font-size:16px;font-weight:600;margin-top:20px;position:relative}
+/* FOOTER */
+footer{background:var(--d);color:var(--c);padding:70px 48px 36px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:56px}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:4px;color:var(--c);margin-bottom:14px}
+.ft-logo span{color:var(--tc)}
+.ft-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.4);max-width:260px}
+.ft-ht{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.25);margin-bottom:18px}
+.ft-links{list-style:none}
+.ft-links li{margin-bottom:10px}
+.ft-links a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;cursor:none}
+.ft-links a:hover{color:var(--c)}
+.ft-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:26px;display:flex;justify-content:space-between;align-items:center}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.25)}
+.ft-soc{display:flex;gap:14px}
+.soc-b{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;transition:background .2s;cursor:none}
+.soc-b:hover{background:var(--tc)}
+/* ARTICLE PAGE */
+.art-page{max-width:780px;margin:0 auto;padding:120px 48px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--mu);text-decoration:none;margin-bottom:40px;transition:color .2s,gap .2s;cursor:none}
+.back-btn:hover{color:var(--tc);gap:12px}
+.art-tag{display:inline-block;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--tc);background:rgba(200,97,74,.1);padding:6px 14px;border-radius:100px;margin-bottom:16px}
+.art-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:900;line-height:1.15;color:var(--d);margin-bottom:20px}
+.art-meta{display:flex;gap:16px;align-items:center;font-size:13px;color:var(--mu);margin-bottom:40px;padding-bottom:30px;border-bottom:1px solid rgba(0,0,0,.08);flex-wrap:wrap}
+.art-hero{width:100%;border-radius:20px;height:320px;display:flex;align-items:center;justify-content:center;font-size:120px;margin-bottom:40px}
+.art-body p{font-size:17px;line-height:1.85;color:#333;margin-bottom:22px}
+.art-tips{background:var(--c);border-radius:16px;padding:28px 32px;margin:32px 0}
+.art-tips h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--d);margin-bottom:16px}
+.art-tips ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.art-tips li{display:flex;gap:10px;font-size:15px;color:var(--tx);line-height:1.5}
+.art-tips li::before{content:'✦';color:var(--tc);flex-shrink:0;font-size:12px;margin-top:3px}
+.art-rel{margin-top:60px;padding-top:40px;border-top:1px solid rgba(0,0,0,.08)}
+.art-rel-t{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--d);margin-bottom:24px}
+/* CATEGORY PAGE */
+.cat-page{padding:120px 48px 80px;max-width:1400px;margin:0 auto}
+.cat-hero{margin-bottom:56px}
+.cat-hero-em{font-size:72px;margin-bottom:16px}
+.cat-hero-t{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,62px);font-weight:900;color:var(--d);margin-bottom:12px}
+.cat-hero-t em{font-style:italic;color:var(--tc)}
+.cat-hero-s{font-size:16px;color:var(--mu)}
+/* SEARCH PAGE */
+.srch-page{padding:120px 48px 80px;max-width:1400px;margin:0 auto}
+.srch-res-t{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--d);margin-bottom:8px}
+.srch-res-s{font-size:15px;color:var(--mu);margin-bottom:40px}
+/* FADE IN */
+.fu{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+/* EYE LIGHT */
+.s-eye-lt{color:var(--bl)!important}.s-eye-lt::before{background:var(--bl)!important}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--c)}::-webkit-scrollbar-thumb{background:var(--bl);border-radius:3px}
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 20px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr}.hero-r{display:none}
+  section{padding:50px 20px}.cat-grid{grid-template-columns:repeat(4,1fr)}
+  .feat-grid{grid-template-columns:1fr}.feat-main{grid-row:auto}
+  .g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}
+  .mason{columns:2}.tip-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .art-page,.cat-page,.srch-page{padding:100px 20px 60px}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cring"></div>
+<nav id="main-nav">
+  <a href="#" class="logo" onclick="goTo('home');return false">LUMI<span>NA</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="goTo('home');return false">Inicio</a></li>
+    <li><a href="#" onclick="goTo('cat','skincare');return false">Skincare</a></li>
+    <li><a href="#" onclick="goTo('cat','nutricion');return false">Nutrición</a></li>
+    <li><a href="#" onclick="goTo('cat','fitness');return false">Fitness</a></li>
+    <li><a href="#" onclick="goTo('cat','mente');return false">Mente</a></li>
+    <li><a href="#" onclick="goTo('cat','glowup');return false">Glow Up</a></li>
+    <li><a href="#" class="nav-cta" onclick="scrollToNL();return false">Newsletter</a></li>
+  </ul>
+</nav>
+<div id="app"></div>
+<script>
+// ===== DATA =====
+const CATS = {
+  skincare:{n:"Skincare",e:"💆‍♀️",bg:"bg1",desc:"Activos, rutinas y ciencia dermatológica"},
+  glowup:{n:"Glow Up",e:"✨",bg:"bg4",desc:"Transformación física, mental y energética"},
+  nutricion:{n:"Nutrición",e:"🥗",bg:"bg2",desc:"Alimentación basada en ciencia"},
+  fitness:{n:"Fitness",e:"💪",bg:"bg5",desc:"Entrenamiento efectivo y recuperación"},
+  mente:{n:"Mente & Alma",e:"🧠",bg:"bg3",desc:"Psicología, neurociencia y bienestar"},
+  sueno:{n:"Sueño",e:"🌙",bg:"bg6",desc:"Optimización del descanso"},
+  hormonas:{n:"Hormonas",e:"🔴",bg:"bg1",desc:"Equilibrio hormonal femenino"},
+  biohacking:{n:"Biohacking",e:"🧬",bg:"bg8",desc:"Tecnología aplicada al cuerpo"},
+  suplementos:{n:"Suplementos",e:"💊",bg:"bg4",desc:"Evidencia y protocolos"},
+  digestion:{n:"Digestión",e:"🌱",bg:"bg2",desc:"Microbioma e intestino sano"},
+  cabello:{n:"Cabello",e:"🧴",bg:"bg3",desc:"Cuidado y crecimiento capilar"},
+  longevidad:{n:"Longevidad",e:"⏳",bg:"bg5",desc:"Envejecimiento saludable"},
+  energia:{n:"Energía",e:"⚡",bg:"bg4",desc:"Vitalidad y rendimiento natural"}
+};
+const ARTICLES = [
+{id:1,t:"Retinol para principiantes: empieza sin irritación",cat:"skincare",tag:"Retinol",e:"🌹",bg:"bg1",au:"Dra. Sofía López",min:9,v:"17K",ex:"El activo anti-edad más estudiado, con la técnica correcta para introducirlo sin que tu piel lo rechace.",p1:"El retinol estimula la producción de colágeno y acelera la renovación celular, reduciendo arrugas, manchas y poros. La clave para principiantes es la técnica 'sandwich': aplica hidratante, luego retinol, luego otra capa de hidratante. Empieza con 0.025% dos noches por semana el primer mes, luego sube gradualmente a 0.05%. El cuerpo necesita tiempo para adaptarse y el error más común es subir demasiado rápido.",p2:"Nunca combines retinol con ácidos AHA/BHA en la misma noche, ya que la combinación puede irritar severamente la piel. Siempre usa SPF50+ al día siguiente porque el retinol aumenta la fotosensibilidad. Si experimentas descamación intensa, reduce la frecuencia. Los resultados reales comienzan a verse entre las semanas 8 y 12, la constancia es fundamental.",tips:["Empieza con 0.025% dos veces por semana","Técnica sandwich: hidratante entre capas","Nunca combinarlo con AHA/BHA la misma noche","SPF al día siguiente: obligatorio","Evitar durante embarazo y lactancia"]},
+{id:2,t:"SPF que no deja residuo blanco ni tapa los poros",cat:"skincare",tag:"Solar",e:"☀️",bg:"bg4",au:"Ana Beautista",min:7,v:"21K",ex:"La guía definitiva para usar protector solar sin sacrificar el aspecto de tu piel ni tus ganas de aplicarlo.",p1:"Los filtros químicos como avobenzona y octinoxato no dejan residuo blanco y absorben la radiación UV sin efecto cosmético visible. Sin embargo, si tienes piel sensible, los minerales (óxido de zinc, dióxido de titanio) en fórmulas con tono o textura fluida son igual de efectivos. Las texturas en gel y sérum son ideales para pieles mixtas y el resultado es piel mate sin brillo.",p2:"El truco para no sentir pegajosidad: aplica sobre hidratante ya absorbida y espera 60 segundos antes de maquillarte. Las marcas coreanas han perfeccionado las texturas: Skin1004, Missha All Around Safe y Beauty of Joseon Relief Sun son referencias de texturas ultraligeras con SPF50+ real. Busca siempre PA++++ para protección UVA completa.",tips:["Aplica 2 dedos de producto para cara y cuello","Reaplicar cada 2 horas con sol directo","Busca PA++++ para protección UVA completa","En invierno es igual de necesario","Aplica después del hidratante ya absorbido"]},
+{id:3,t:"Niacinamida al 10%: borra manchas en 4 semanas",cat:"skincare",tag:"Niacinamida",e:"💜",bg:"bg3",au:"Skincare Lab",min:6,v:"14K",ex:"La vitamina B3 es el ingrediente más versátil del skincare: manchas, poros, sebo y barrera cutánea en uno.",p1:"La niacinamida inhibe la transferencia de melanosomas entre las células de la piel, siendo estas las partículas que causan manchas oscuras. A concentración del 10% reduce manchas visiblemente en 4 semanas y normaliza la producción de sebo en pieles mixtas y grasas. También refuerza la barrera cutánea y reduce la rojez asociada a la rosácea y la sensibilidad.",p2:"Es compatible con prácticamente todos los activos del skincare: retinol, ácido hialurónico, vitamina C. El único mito desmentido es que no se puede combinar con vitamina C: los estudios actuales confirman que sí es seguro. Aplícala en sérum después de limpiar y antes de hidratar, mañana y noche. Los resultados en manchas son visibles desde la semana 3 con uso constante.",tips:["10% es la concentración más efectiva","Compatible con casi todos los activos","Úsala mañana y noche tras limpiar","Resultados en manchas desde semana 3","Excelente para normalizar sebo en pieles grasas"]},
+{id:4,t:"Double cleansing: el método coreano que cambia la piel",cat:"skincare",tag:"Limpieza",e:"🫧",bg:"bg2",au:"K-Beauty Club",min:5,v:"9.8K",ex:"La doble limpieza coreana garantiza que ningún residuo de maquillaje, SPF ni contaminación quede en la piel.",p1:"El double cleansing se basa en la regla de que lo similar disuelve lo similar. El primer limpiador (aceite o bálsamo) disuelve el maquillaje resistente al agua, el SPF y la grasa. El segundo limpiador (acuoso: gel, espuma o leche) limpia la piel de impurezas solubles en agua. El resultado es piel completamente limpia sin sobresecar ni romper la barrera cutánea.",p2:"El error más común es usar un limpiador acuoso demasiado agresivo como segundo paso. Para pieles secas: aceite + leche limpiadora. Para mixtas: aceite + gel suave. Para grasas: bálsamo + gel con BHA. Solo se realiza en la noche ya que por la mañana basta con agua tibia o un limpiador muy suave. La mañana es diferente: la piel ha estado en casa, no necesita doble limpieza.",tips:["Solo necesario en la rutina de noche","Primer paso: aceite o bálsamo para SPF y maquillaje","Segundo paso: limpiador acuoso suave","Nunca un limpiador agresivo en el segundo paso","Movimientos circulares suaves, sin frotar"]},
+{id:5,t:"Ácido hialurónico: guía completa para hidratación perfecta",cat:"skincare",tag:"Hidratación",e:"💧",bg:"bg5",au:"Dra. Martínez",min:8,v:"18K",ex:"No todos los ácidos hialurónicos son iguales. Aprende los tipos por peso molecular y el error que los hace contraproducentes.",p1:"El ácido hialurónico existe en tres pesos moleculares con funciones distintas. El de alto peso molecular crea una película hidratante sobre la superficie. El de medio peso penetra levemente en la epidermis. El de bajo peso (y el nano-hialurónico) penetra más profundo en la dermis. Lo ideal es un sérum con múltiples pesos moleculares para hidratación en todas las capas de la piel.",p2:"El error crítico que comete la mayoría: aplicar ácido hialurónico sobre piel seca en un ambiente seco. Al ser un humectante, atrae agua del entorno; si no hay agua disponible externamente, la extrae de las capas más profundas de la piel, dejándola más deshidratada. Aplícalo siempre sobre piel ligeramente húmeda y sella inmediatamente con un hidratante o aceite facial.",tips:["Aplica siempre sobre piel húmeda, nunca seca","Busca fórmulas con múltiples pesos moleculares","Sella con hidratante o aceite encima","En climas muy secos, mezcla con gotas de agua","Las pieles grasas también necesitan hidratación"]},
+{id:6,t:"Vitamina C en skincare: cuál elegir y cómo aplicar",cat:"skincare",tag:"Vitamina C",e:"🍊",bg:"bg4",au:"Dra. García",min:9,v:"13K",ex:"El activo antioxidante por excelencia: inestable y confuso. Te explicamos cada forma y cómo sacarle el máximo partido.",p1:"La forma más efectiva y más inestable de vitamina C es el L-ascórbico puro al 15-20%. Requiere pH muy bajo (3.5) para funcionar y es la más potente contra manchas, fotoenvejecimiento y radicales libres. Para pieles sensibles, hay alternativas estables: glucósido de ascorbilo (más suave, penetra y convierte en vitamina C en la piel) y ácido ascórbico encapsulado que se libera gradualmente.",p2:"Siempre usa vitamina C por la mañana para potenciar el efecto antioxidante del SPF: es la combinación más poderosa del skincare. Es compatible con niacinamida, el mito de que no se pueden combinar está científicamente desmentido. Sí evita combinarla directamente con retinol o AHA/BHA. Guarda tu sérum en lugar fresco y oscuro; cuando se vuelve naranja oscuro, ha oxidado y no funciona.",tips:["Úsala siempre por la mañana antes del SPF","L-ascórbico puro: la más potente pero inestable","Glucósido de ascorbilo: ideal para pieles sensibles","Se puede combinar con niacinamida sin problema","Sérum oscuro = oxidado, descártalo"]},
+{id:7,t:"7 errores de skincare que envejecen tu piel antes de tiempo",cat:"skincare",tag:"Anti-edad",e:"🪞",bg:"bg1",au:"Beautify",min:10,v:"22K",ex:"Prácticas cotidianas que sabotean tu piel sin que te des cuenta. Elimínalos y nota la diferencia en semanas.",p1:"El mayor acelerador del envejecimiento cutáneo no es el sol ni el estrés: es no usar SPF diariamente. El 80% del fotoenvejecimiento se acumula en la vida cotidiana, con luz de día indirecta y conducir. Segundo error: limpiar demasiado agresivamente, porque la barrera cutánea rota envejece más rápido y reacciona peor a cualquier activo. Tercero: cambiar de productos antes de que tengan tiempo de actuar.",p2:"Otros errores críticos: dormir con maquillaje (aumenta el daño oxidativo durante las horas de reparación nocturna), frotar en lugar de presionar al limpiar, usar agua muy caliente que disuelve el manto ácido, y saltarse el cuello y el escote en la rutina facial. La constancia con una rutina sencilla supera siempre a tener los mejores productos del mundo pero sin consistencia.",tips:["SPF diario: el anti-edad número uno sin debate","No cambies productos antes de 8 semanas","Incluye cuello y escote en tu rutina","Agua tibia al limpiar, nunca muy caliente","Dormir con maquillaje aumenta el daño oxidativo nocturno"]},
+{id:8,t:"Ceramidas: restaura la barrera cutánea dañada",cat:"skincare",tag:"Barrera",e:"🛡️",bg:"bg2",au:"Dr. Romano",min:7,v:"8.9K",ex:"Si tu piel está seca, reactiva o sensible, probablemente le faltan ceramidas, el cimiento de una piel sana.",p1:"Las ceramidas son lípidos que forman el 50% de la barrera cutánea. Cuando esta barrera se rompe por limpieza excesiva, retinoides, invierno o genética, la piel pierde agua, se irrita y envejece más rápido. Los productos con ceramidas reponen estos lípidos y restauran la barrera física protectora. Son esenciales para pieles con eczema, rosácea o cualquier tipo de sensibilidad cutánea.",p2:"Lo mejor de las ceramidas es que son compatibles con absolutamente todos los activos: retinol, ácidos, vitamina C. Actúan como la red de seguridad de tu rutina. Si introduces un activo nuevo y tu piel reacciona, añade ceramidas para calmar. Busca en la etiqueta ceramide NP, ceramide AP o ceramide EOP. Cuanto más arriba estén en la lista de ingredientes, mayor concentración tienen.",tips:["Ideales para pieles sensibles, secas o con eczema","Compatibles con todos los activos del skincare","Aplica en hidratante después de tus activos","Si introduces retinol, añade ceramidas para calmar","Busca ceramide NP, AP o EOP en ingredientes"]},
+{id:9,t:"Bakuchiol: el retinol natural sin efectos secundarios",cat:"skincare",tag:"Natural",e:"🌿",bg:"bg2",au:"Organic Skin",min:6,v:"7.2K",ex:"La alternativa vegana al retinol que los estudios científicos confirman como igual de efectiva para líneas de expresión.",p1:"El bakuchiol es un extracto de las semillas de la planta Psoralea corylifolia, usada en medicina ayurvédica. Un estudio de 2018 en el British Journal of Dermatology comparó bakuchiol al 0.5% con retinol al 0.5% durante 12 semanas y encontró resultados equivalentes en reducción de líneas de expresión, manchas y elasticidad, pero con significativamente menos irritación y descamación.",p2:"A diferencia del retinol, el bakuchiol se puede usar mañana y noche, durante el embarazo, y no requiere la misma precaución con el SPF aunque siempre es recomendable. Es ideal para pieles sensibles que no toleran el retinol. El único inconveniente es que es significativamente más caro. Se puede combinar con retinol a dosis bajas para potenciar el efecto sin aumentar la irritación.",tips:["Igual de efectivo que retinol 0.5% según estudios","Se puede usar mañana y noche","Compatible con embarazo y lactancia","Ideal para pieles sensibles o rosácea","No requiere el mismo cuidado que el retinol"]},
+{id:10,t:"Exfoliación química vs física: qué elige un dermatólogo",cat:"skincare",tag:"Exfoliación",e:"✨",bg:"bg3",au:"Dra. Valls",min:8,v:"11K",ex:"El debate resuelto: cuándo usar cada tipo, qué activos elegir y los errores que dañan tu piel.",p1:"La exfoliación química usa ácidos que disuelven las uniones entre células muertas sin fricción. El ácido glicólico (AHA) es el más potente para renovar la superficie; el láctico es más suave e hidratante. El salicílico (BHA) penetra el poro y es ideal para acné. La exfoliación física con scrubs puede causar microdesgarros invisibles si se usa con presión excesiva, especialmente en pieles sensibles o con rosácea.",p2:"Los dermatólogos recomiendan 2-3 veces por semana de exfoliación química para la mayoría de pieles. Nunca el mismo día que retinol: la combinación puede irritar severamente. Comienza con AHA al 5-7% si eres nueva en ácidos. El PHI o hiperpigmentación post-inflamatoria puede empeorar con sobreexfoliación en pieles oscuras, por lo que siempre es mejor empezar con baja frecuencia y aumentar gradualmente.",tips:["AHA (glicólico, láctico) para superficie y brillo","BHA (salicílico) para poros y acné","Máximo 3 veces por semana","Nunca combinarlo con retinol el mismo día","Siempre SPF después de exfoliar"]},
+{id:11,t:"Gua sha y jade roller: técnica correcta para drenar y tonificar",cat:"skincare",tag:"Masaje Facial",e:"💎",bg:"bg3",au:"Face Yoga Club",min:6,v:"20K",ex:"Más allá de la tendencia, estas herramientas tienen beneficios reales si se usan con la técnica correcta.",p1:"El gua sha y el jade roller estimulan el drenaje linfático facial cuando se usan con la técnica correcta: movimientos suaves y largos siempre hacia arriba y hacia afuera, nunca hacia abajo. El drenaje linfático reduce la retención de líquidos, la hinchazón matutina y puede mejorar la definición de los ángulos del rostro con uso consistente durante varias semanas.",p2:"El gua sha, con su forma irregular, puede trabajar zonas específicas con más precisión que el roller. El roller es más relajante y fácil de manejar. Ambos necesitan deslizarse sobre aceite facial, nunca en seco, o causarán arrastre y rojez. Guárdalos en el frigorífico para un efecto decongestivo mayor, especialmente útil para la hinchazón matutina alrededor de los ojos.",tips:["Siempre sobre aceite facial, nunca en seco","Movimientos hacia arriba y los lados","Guárdalos en el frigorífico para efecto descongestivo","5 minutos por la mañana son suficientes","El gua sha es más preciso para zonas específicas"]},
+{id:12,t:"Skincare minimalista: 3 productos que lo hacen todo",cat:"skincare",tag:"Minimalismo",e:"🌸",bg:"bg4",au:"Less Is More",min:5,v:"16K",ex:"La ciencia demuestra que menos es más si eliges correctamente. Adiós a las rutinas de 10 pasos.",p1:"La tríada mínima que cubre el 95% de las necesidades cutáneas: limpiador suave con pH equilibrado (4.5-5.5), sérum con niacinamida y ácido hialurónico, y SPF50+. Con estos tres productos bien elegidos tienes hidratación, antioxidantes, uniformización del tono y protección solar. Todo lo demás es complemento opcional, no necesidad.",p2:"El problema de las rutinas largas no es el número de pasos sino la posible incompatibilidad entre activos y la sobreestimulación de la piel. Menos productos significa menos riesgo de reacciones cruzadas. Si tu piel está reactiva, la primera respuesta siempre debe ser eliminar pasos, no añadir más. El skincare funciona mejor cuando la barrera cutánea está intacta y no sobrecargada.",tips:["Limpiador + sérum activo + SPF = base suficiente","Si tu piel reacciona, elimina pasos primero","Más productos no significa mejor resultado","Da tiempo a cada producto: mínimo 6-8 semanas","La consistencia supera a la complejidad"]},
+{id:13,t:"La guía definitiva del glow up en 30 días",cat:"glowup",tag:"Transformación",e:"✨",bg:"bg1",au:"Lumina Editorial",min:12,v:"45K",ex:"Un plan completo y realista que combina skincare, nutrición, movimiento y mentalidad para una transformación real.",p1:"El glow up genuino no es instantáneo: es la suma de micro-mejoras sostenidas en el tiempo. La semana 1 se enfoca en la base: dormir 8 horas, beber 2.5L de agua, eliminar azúcar refinada y ultraprocesados. Semana 2: rutina de ejercicio de mínimo 30 minutos diarios y skincare consistente de mañana y noche. Semana 3: incorpora suplementos básicos como vitamina D, omega-3 y magnesio. Semana 4: trabajo mental y postura.",p2:"El resultado visible más rápido viene de la hidratación y el sueño. En 7 días de beber suficiente agua y dormir bien, la piel cambia visiblemente. En 30 días con constancia en todo el protocolo, los cambios en composición corporal, tono de piel y energía son notables. La clave es que cada hábito potencia al siguiente: mejor sueño produce mejor piel, más energía y mejor entrenamiento.",tips:["Semana 1: agua, sueño y eliminar azúcar","Semana 2: ejercicio diario y skincare constante","Semana 3: suplementos (D3, omega-3, magnesio)","Semana 4: postura y trabajo mental","La hidratación es el glow up más rápido y visible"]},
+{id:14,t:"Glow up mental: cómo cambia todo desde adentro",cat:"glowup",tag:"Mindset",e:"🧠",bg:"bg3",au:"Psic. Torres",min:10,v:"28K",ex:"El aspecto físico sigue al mental. Cuando cambias tu psicología, tu cuerpo y tu energía se transforman solos.",p1:"Estudios de psicología positiva demuestran que la autopercepción influye directamente en el lenguaje corporal, los niveles hormonales y la forma en que los demás nos perciben. Un glow up mental significa trabajar la voz interna crítica, establecer límites saludables y cultivar una identidad basada en valores. El journaling y la terapia cognitivo-conductual son las herramientas más efectivas disponibles.",p2:"Ejercicio práctico para 21 días: escribe cada mañana tres características tuyas que aprecias, que no sean físicas. Al mismo tiempo, identifica un pensamiento autocrítico por día y replantéalo hacia una perspectiva más neutral o compasiva. El cambio en el tono de la voz interna tarda entre 6 y 8 semanas en consolidarse, pero sus efectos en postura, interacciones sociales y toma de decisiones son medibles.",tips:["Journaling matutino: 3 características que aprecias","Identifica y replantea un pensamiento autocrítico al día","TCC: la herramienta más efectiva","Los límites saludables mejoran la autoestima","La postura cambia cuando cambia la autopercepción"]},
+{id:15,t:"Cuerpo sin obsesión: tu mejor forma desde la salud",cat:"glowup",tag:"Body",e:"💃",bg:"bg2",au:"Carmen Vega",min:10,v:"15K",ex:"Construye el cuerpo que quieres desde la salud y no desde el miedo. La diferencia entre ambos enfoques lo cambia todo.",p1:"El enfoque de restricción y castigo eleva el cortisol, promueve el almacenamiento de grasa abdominal y genera un ciclo de rebote sin fin. El enfoque de nutrición y movimiento desde el disfrute regula el cortisol, mejora la composición corporal a largo plazo y es sostenible durante años. El primer paso es diferenciar entre movimiento que te castigas y movimiento que celebras y disfrutas.",p2:"Los pilares: come suficiente proteína (1.6-2g por kilo de peso) para mantener músculo, muévete de forma que genuinamente disfrutes y no solo la que más quema, duerme bien porque sin sueño el cortisol boicotea cualquier esfuerzo. La transformación física sostenible tarda entre 3 y 6 meses. Las transformaciones en menos tiempo casi siempre se revierten.",tips:["Proteína: 1.6-2g por kg de peso corporal","Elige el movimiento que disfrutas","Sin sueño, el cortisol bloquea el progreso","La comparación con otros sabotea el proceso","Resultados sostenibles toman mínimo 3 meses"]},
+{id:16,t:"Stack de suplementos para energía sin ansiedad",cat:"glowup",tag:"Energía",e:"⚡",bg:"bg4",au:"Dr. Ramírez",min:9,v:"12K",ex:"Los suplementos que elevan la energía de forma sostenida sin los crashes del café y sin provocar nerviosismo.",p1:"El stack base para energía sin estimulantes agresivos: vitamina D3 con K2 (5000 UI por la mañana), hierro si hay déficit confirmado en analítica, vitamina B12 en forma de metilcobalamina sublingual, y coenzima Q10 a 100-200mg. Estos cubren las causas más comunes de fatiga crónica y el 40% de las personas con cansancio inexplicable tienen algún déficit de estos nutrientes.",p2:"Para energía de rendimiento sin dependencia: el mate tiene menos cafeína que el café pero con teobromina y teofilina que suavizan el efecto y evitan el crash. La ashwagandha a 300-600mg al día reduce el cortisol y mejora la energía sostenida. El lion's mane mejora el foco mental. Toma este stack durante 4-6 semanas antes de evaluarlo: los adaptógenos no funcionan de forma aguda.",tips:["Vitamina D3+K2 por la mañana: fundamental","Analítica anual para descartar déficits","Ashwagandha 300-600mg: energía sostenida","Lion's mane para foco mental sin estimulantes","Espera 4-6 semanas para evaluar adaptógenos"]},
+{id:17,t:"Digital detox 30 días: lo que le pasa a tu piel y mente",cat:"glowup",tag:"Detox Digital",e:"📵",bg:"bg6",au:"Elena Paz",min:8,v:"10K",ex:"Lo que ocurre biológica y psicológicamente cuando te desconectas de las redes durante un mes.",p1:"La exposición prolongada a pantallas antes de dormir inhibe la melatonina y fragmenta el sueño profundo. Sin sueño de calidad, los niveles de cortisol suben, la piel produce más sebo, se genera más inflamación y el sistema inmune se debilita. 30 días sin redes sociales nocturnas se traducen en piel más calmada, mejor calidad de sueño y niveles de ansiedad notablemente reducidos.",p2:"El protocolo: no pantallas 90 minutos antes de dormir, redes sociales solo en horarios establecidos como de 11h a 13h y de 18h a 19h, notificaciones desactivadas excepto llamadas. La semana 1 es la más difícil por el síndrome de abstinencia digital. La semana 3 es cuando la mayoría reportan el mayor cambio en humor y energía. Los beneficios en piel comienzan a notarse desde la semana 2.",tips:["Sin pantallas 90 min antes de dormir","Redes solo en horarios fijos, no al despertar","La semana 1 es difícil: el síndrome de abstinencia es real","La piel mejora desde la semana 2","Notificaciones desactivadas = menos cortisol crónico"]},
+{id:18,t:"Glow up capilar: protocolo coreano para pelo brillante",cat:"glowup",tag:"Cabello",e:"🧴",bg:"bg3",au:"Ji-Yeon Kim",min:7,v:"20K",ex:"El método que han perfeccionado durante décadas para conseguir ese pelo increíblemente brillante y suave.",p1:"El protocolo coreano de cabello se basa en tres pilares: limpieza suave con champús de pH equilibrado y sin sulfatos agresivos, hidratación profunda con mascarilla proteica una vez por semana y mascarilla hidratante dos veces por semana, y sellado de la cutícula con enjuague de agua fría al final de cada lavado. El agua fría es el truco gratuito más efectivo para conseguir brillo inmediato.",p2:"Los ingredientes estrella de la k-beauty capilar: aceite de camelia para brillo y suavidad, fermentados de arroz para fortalecer el tallo, y ginseng para estimular la circulación del cuero cabelludo y el crecimiento. Reducir el calor a máximo 180°C y usar siempre protección térmica marca una diferencia enorme en la integridad del cabello en 4-6 semanas de práctica consistente.",tips:["Agua fría al final: sella la cutícula y da brillo","Alterna mascarilla proteica e hidratante","Calor máximo 180°C con protección térmica","Aceite de camelia: el acabado más natural","Masaje de cuero cabelludo 5 min al día"]},
+{id:19,t:"Postura: cómo cambia tu aspecto y tu energía",cat:"glowup",tag:"Postura",e:"🧍‍♀️",bg:"bg2",au:"Coach Ruiz",min:7,v:"9.1K",ex:"Una buena postura puede cambiar cómo te ves y cómo te perciben más que cualquier tratamiento estético.",p1:"La postura forward head (cabeza adelantada por mirar el teléfono) acorta visualmente el cuello, crea papada y comprime el pecho. Corregirla mejora la silueta y la apertura facial de forma visible. Ejercicios básicos: 10 chin tucks al día llevando la cabeza hacia atrás, estiramiento de pectoral en el marco de la puerta, y fortalecer trapecio y romboides con filas y face pulls en el gimnasio.",p2:"La postura también afecta hormonalmente. Pararse erguida con apertura de hombros durante 2 minutos eleva la testosterona un 20% y reduce el cortisol un 25% según estudios de Amy Cuddy en Harvard. Practicar power pose no es solo estética: cambia la química cerebral y el estado mental. El hábito más práctico es poner una alarma cada hora para revisar y corregir la postura.",tips:["10 chin tucks al día corrigen la cabeza adelantada","Estira pectorales 2 min diarios","Alarma cada hora para revisar tu postura","Power pose: 2 min antes de algo importante","Fortalecer trapecio: clave para postura correcta"]},
+{id:20,t:"Glow up emocional: el proceso de transformación interior",cat:"glowup",tag:"Emocional",e:"🌺",bg:"bg1",au:"Terapeuta Ana",min:11,v:"14K",ex:"Muchos bloqueos físicos tienen raíces emocionales. Aquí está el mapa para trabajarlos.",p1:"El estrés crónico eleva el cortisol de forma sostenida, causando inflamación sistémica, retención de grasa abdominal, acné hormonal y supresión del sistema inmune. El cuerpo no distingue entre estrés laboral y emocional: todos impactan de la misma forma. Sanar relaciones, poner límites y procesar emociones reduce el cortisol de forma más efectiva que cualquier suplemento.",p2:"El trabajo emocional para el glow up incluye terapia cognitivo-conductual o somatic experiencing para procesar el trauma guardado en el cuerpo. El journaling de liberación consiste en escribir sin censura durante 20 minutos sobre algo que duele o preocupa. Las prácticas de regulación del sistema nervioso como yoga nidra, EFT tapping y respiración vagal tienen efectos físicos medibles.",tips:["El estrés crónico es el mayor saboteador físico","Poner límites reduce el cortisol significativamente","Journaling de liberación: 20 min sin censura","Somatic experiencing para trauma en el cuerpo","Los cambios físicos siguen a los emocionales"]},
+{id:21,t:"Superalimentos que transforman tu piel desde adentro",cat:"nutricion",tag:"Piel",e:"🥑",bg:"bg2",au:"Ana Rodríguez",min:7,v:"11K",ex:"La conexión intestino-piel es real. Estos alimentos transforman la textura y luminosidad desde adentro.",p1:"Los alimentos con mayor impacto en la piel: colágeno en caldo de huesos (el más biodisponible), arándanos y bayas oscuras con antocianinas que protegen el colágeno del daño solar, aguacate con grasas monoinsaturadas que mantienen la elasticidad, tomate cocinado cuyo licopeno es 4 veces más biodisponible que en crudo y protege contra el fotoenvejecimiento, y salmón o sardinas con omega-3 antiinflamatorio.",p2:"El azúcar refinada hace lo opuesto a todo lo anterior: la glicación une el azúcar a las proteínas del colágeno haciéndolas rígidas y creando una piel amarillenta y apagada llamada edad glicada. Reducir el azúcar refinada y los ultraprocesados durante 3 semanas produce un cambio visible en la tez. Es la intervención nutricional más efectiva y más rápida para la piel.",tips:["Tomate cocinado: licopeno más biodisponible","Arándanos y bayas: protegen el colágeno","Reducir azúcar refinada: cambio visible en 3 semanas","Salmón 3 veces por semana: omega-3 para la piel","Caldo de huesos: colágeno más biodisponible"]},
+{id:22,t:"Ayuno intermitente 16:8: resultados reales a los 30 días",cat:"nutricion",tag:"Ayuno",e:"⏱️",bg:"bg4",au:"Nutrióloga Torres",min:11,v:"31K",ex:"Qué ocurre en tu cuerpo durante las horas de ayuno y qué resultados puedes esperar con honestidad.",p1:"El ayuno 16:8 funciona principalmente por tres mecanismos: reducción calórica natural al tener menos tiempo de ingesta, mejora de la sensibilidad a la insulina al dar descanso pancreático, y activación de la autofagia (proceso de limpieza celular) a partir de las 14-16 horas. En personas sin historial de TCA y sin necesidades especiales de salud, es seguro y efectivo a largo plazo.",p2:"Los resultados a los 30 días reportados consistentemente: reducción de 0.5-1.5 kg principalmente de grasa e inflamación, mejora del foco mental por la mañana en cetosis ligera, reducción del hinchazón abdominal y mejora de la glucosa en ayunas. Lo que no resuelve: si lo que comes en 8 horas es ultra-procesado, el ayuno no puede compensar la mala calidad de los alimentos.",tips:["Las primeras 2 semanas son las más difíciles: es normal","Rompe el ayuno con proteína, no con carbohidratos","El café negro no rompe el ayuno metabólico","No recomendado con historial de TCA","La calidad de lo que comes importa más que el ayuno"]},
+{id:23,t:"Omega-3: guía definitiva sobre dosis, timing y marcas",cat:"nutricion",tag:"Omega-3",e:"🐟",bg:"bg5",au:"Dr. Sánchez",min:8,v:"9.4K",ex:"El suplemento más respaldado por la ciencia. Pero tomarlo mal lo hace completamente inútil.",p1:"El omega-3 tiene dos componentes activos: EPA (antiinflamatorio, mejora estado de ánimo) y DHA (salud cerebral, visión). La dosis efectiva es 2-3g de EPA+DHA combinados por día, no del aceite de pescado total. El krill oil tiene mejor biodisponibilidad por su estructura en fosfolípidos. El omega-3 de algas es la opción vegana con DHA equivalente y sin riesgo de contaminantes.",p2:"Timing: toma el omega-3 con las comidas más grasas del día para maximizar la absorción. Evita tomarlo en ayunas. Refrigera el suplemento después de abrir para prevenir la oxidación, ya que el omega-3 oxidado no solo no funciona sino que puede ser proinflamatorio. Marcas con certificación IFOS o Marine Stewardship Council garantizan pureza y ausencia de metales pesados.",tips:["Busca 2-3g de EPA+DHA combinados","Tómalo con la comida más grasa del día","Refrigera después de abrir","Omega-3 de algas: opción vegana equivalente","Certificación IFOS: garantía de pureza"]},
+{id:24,t:"Matcha vs café: qué dice la ciencia sobre energía y ansiedad",cat:"nutricion",tag:"Cafeína",e:"🍵",bg:"bg2",au:"Sara V.",min:5,v:"14K",ex:"El matcha no es solo tendencia. Tiene mecanismos biológicos distintos al café que lo hacen superior para ciertos objetivos.",p1:"El café da un pico de cafeína rápido que estimula agresivamente el sistema nervioso simpático, elevando el cortisol y la frecuencia cardíaca con un crash posterior. El matcha contiene L-teanina, un aminoácido que modula la absorción de cafeína, produciendo una curva más gradual y prolongada. El resultado es energía de 4-6 horas sin el crash ni la ansiedad del café convencional.",p2:"El matcha tiene además EGCG (epigalocatequina galato), el antioxidante más potente encontrado en plantas, con efectos documentados en la reducción de inflamación y mejora de la sensibilidad a la insulina. Para personas con ansiedad o cortisol alto, cambiar el café de la mañana por matcha puede ser transformador en 2-3 semanas. Necesitas calidad ceremonial, no grado culinario.",tips:["L-teanina elimina la ansiedad de la cafeína","La energía del matcha dura 4-6h sin crash","EGCG: uno de los antioxidantes más potentes","Necesitas grado ceremonial, no culinario","Ideal para personas con ansiedad o cortisol alto"]},
+{id:25,t:"Cuánta proteína necesitas para tonificar el músculo",cat:"nutricion",tag:"Proteínas",e:"🥩",bg:"bg4",au:"Fit Coach Alba",min:9,v:"7.8K",ex:"El número que la mayoría no alcanza y que explica por qué no ven cambios a pesar de entrenar con constancia.",p1:"La síntesis proteica máxima para hipertrofia muscular requiere entre 1.6g y 2.2g de proteína por kilogramo de peso corporal al día. Para una mujer de 60kg que quiere tonificar, eso es 96-132g de proteína diarios. La mayoría de mujeres consume entre 50-70g, lo cual es suficiente para no perder músculo pero insuficiente para ganarlo. La distribución también importa: máximo 35-40g en una sola ingesta se aprovechan para síntesis.",p2:"Las mejores fuentes por biodisponibilidad: suero de leche (whey), huevos completos, pechuga de pollo y salmón. Para dietas veganas: combinación de legumbres con cereales integrales más proteína de guisante o arroz. El timing tiene relevancia menor de lo que se creía: el total diario es lo más importante. Suplementar con whey protein es una solución práctica si cuesta llegar al objetivo por comida.",tips:["1.6-2.2g por kg = rango óptimo para músculo","Distribuye la proteína en 4-5 tomas al día","El total diario importa más que el timing","Huevos completos: proteína muy biodisponible","Para veganas: legumbres + cereales + proteína de guisante"]},
+{id:26,t:"Los 5 condimentos antiinflamatorios más potentes",cat:"nutricion",tag:"Antiinflamatorio",e:"🧄",bg:"bg1",au:"Nutrición Funcional",min:6,v:"5.9K",ex:"Ingredientes que ya tienes en casa con efectos antiinflamatorios clínicamente demostrados.",p1:"Cúrcuma: la curcumina inhibe el NFkB, el interruptor principal de la inflamación. Para biodisponibilidad real necesita pimienta negra (la piperina la aumenta 2000%) y grasa. Jengibre: los gingeroles tienen efectos antiinflamatorios comparables al ibuprofeno en dolor muscular de aparición tardía. Ajo: la alicina se maximiza aplastándolo y dejándolo reposar 10 minutos antes de cocinar y es antiinflamatoria y cardioprotectora.",p2:"Canela de Ceilán (no cassia): mejora la sensibilidad a la insulina en 1-3g diarios, reduciendo la inflamación metabólica. Romero: el ácido carnósico protege las neuronas del estrés oxidativo. Estos cinco juntos en una dieta regular producen efectos antiinflamatorios medibles en marcadores como PCR e IL-6 a las 6-8 semanas de uso consistente.",tips:["Cúrcuma siempre con pimienta negra y grasa","Aplasta el ajo y espera 10 min antes de cocinar","Canela de Ceilán, no cassia: diferente compuesto","Jengibre fresco: más potente que en polvo","1g de cúrcuma al día tiene efectos medibles"]},
+{id:27,t:"Colágeno marino vs bovino: cuál necesita tu piel",cat:"nutricion",tag:"Colágeno",e:"💊",bg:"bg3",au:"Dra. Costa",min:8,v:"45K",ex:"El debate definitivo sobre el colágeno en polvo: si funciona, cuál elegir y la forma de tomarlo que multiplica efectos.",p1:"El colágeno hidrolizado funciona no como colágeno directo sino porque sus aminoácidos (glicina, prolina, hidroxiprolina) señalizan a los fibroblastos que hay degradación y estimulan producción nueva. Estudios de 12 semanas con 2.5-10g diarios muestran mejora medible en hidratación y elasticidad cutánea. El marino (tipo I, de pez) tiene moléculas más pequeñas y mayor biodisponibilidad que el bovino.",p2:"El bovino contiene tipos I y III (piel, huesos, tendones) y es más económico. Para piel, el marino es superior en absorción. Para articulaciones y recuperación muscular, el bovino tipo II de cartílago de pollo es más específico. La vitamina C es cofactor obligatorio para la síntesis de colágeno: toma el colágeno junto a vitamina C para conseguir el efecto completo y no desperdiciar el suplemento.",tips:["Marino tipo I: mayor biodisponibilidad para piel","Toma siempre con vitamina C: cofactor esencial","2.5-10g diarios: rango efectivo según estudios","Mínimo 8-12 semanas para ver resultados","Bovino tipo II: más específico para articulaciones"]},
+{id:28,t:"Dieta antiinflamatoria: plan de 7 días completo",cat:"nutricion",tag:"Antiinflamatoria",e:"🥗",bg:"bg2",au:"Chef Nutritiva",min:12,v:"19K",ex:"El plan semanal que reduce la inflamación, mejora la piel, reduce el hinchazón y nivela la energía.",p1:"La dieta antiinflamatoria no es una moda sino un protocolo con base científica: reduce los marcadores PCR e IL-6, mejora la piel, reduce el dolor articular y nivela la energía de forma sostenida. Los pilares son: abundantes verduras de hoja verde y crucíferas, dos raciones de pescado graso a la semana, aceite de oliva virgen extra como grasa principal, frutos rojos diarios, y eliminación de aceites vegetales refinados.",p2:"Los alimentos que más inflamación generan: azúcar refinada, harinas blancas, alcohol, aceites vegetales omega-6 procesados (girasol, maíz, soja) y alimentos ultra-procesados. El plan de 7 días se estructura con desayunos con proteína sin cereales refinados, almuerzos con proteína y mucha verdura, y cenas ligeras sin carbohidratos refinados. Los marcadores de inflamación mejoran en 2-3 semanas.",tips:["Aceite de oliva virgen extra: antiinflamatorio principal","Elimina aceites de girasol y maíz: son proinflamatorios","Crucíferas 4-5 veces por semana","Azúcar refinada: el mayor promotor de inflamación","Frutos rojos diarios: los antioxidantes más potentes"]},
+{id:29,t:"Azúcar y piel: la glicación que nadie te explica bien",cat:"nutricion",tag:"Glicación",e:"🍬",bg:"bg4",au:"Dra. Fierro",min:7,v:"16K",ex:"El proceso de glicación que convierte el azúcar en daño dérmico irreversible y cómo frenarlo.",p1:"La glicación cutánea ocurre cuando el azúcar en sangre se adhiere a las proteínas de colágeno y elastina, creando AGEs (productos finales de glicación avanzada). Los AGEs son amarillentos, rígidos y resistentes a la degradación. Se acumulan con los años y son visibles como piel apagada, amarillenta y envejecida. El proceso se acelera significativamente con picos glucémicos frecuentes.",p2:"Para frenar la glicación: reducir azúcares refinados y carbohidratos de alto índice glucémico, aumentar fibra que ralentiza la absorción de glucosa, y usar activos antiglicación en skincare como la carnosina. Internamente, el EGCG del matcha, la canela de Ceilán y la benfotiamina (vitamina B1 liposoluble) inhiben la glicación. Los cambios en la piel son visibles a los 3 meses de reducir el azúcar.",tips:["Los AGEs de la glicación son irreversibles","Reducir azúcar refinada: el anti-edad más efectivo","Fibra con cada comida: ralentiza los picos de glucosa","Carnosina en skincare: antiglicante tópico","EGCG del matcha inhibe la glicación internamente"]},
+{id:30,t:"Zone 2 training: el cardio que quema grasa sin destruir músculo",cat:"fitness",tag:"Cardio",e:"🏃‍♀️",bg:"bg2",au:"Coach Mendoza",min:7,v:"13K",ex:"El tipo de cardio que los atletas de élite llevan años haciendo y que nadie te había explicado bien.",p1:"El Zone 2 es el cardio a baja intensidad donde puedes mantener una conversación completa (aproximadamente 60-70% de tu frecuencia cardíaca máxima). A esta intensidad, el cuerpo usa principalmente grasa como combustible y estimula la mitocondriogénesis, el crecimiento de nuevas mitocondrias. Más mitocondrias significa mayor capacidad de quemar grasa en reposo durante todo el día.",p2:"Cómo hacerlo: caminar a paso rápido, bicicleta estática a ritmo moderado, nadar suave. La prueba del habla: si puedes cantar, vas muy lento; si no puedes hablar, vas demasiado rápido. El error común es hacerlo demasiado intenso. Beneficios con 3h semanales en 8 semanas: mejora del VO2 max, reducción de grasa visceral y mejora de la sensibilidad a la insulina.",tips:["Prueba del habla: puedes hablar pero no cantar","3-4 horas semanales para resultados óptimos","No monitorices por velocidad sino por frecuencia cardíaca","Los primeros meses serás muy lento: es normal","Combinar con fuerza 2 días por semana"]},
+{id:31,t:"Lifting para mujeres: por qué el peso no te hará grande",cat:"fitness",tag:"Fuerza",e:"🏋️‍♀️",bg:"bg4",au:"Dra. González",min:9,v:"19K",ex:"El mito del volumen femenino desmentido con ciencia. Por qué levantar pesado es la decisión más inteligente.",p1:"Las mujeres tienen entre 15-20 veces menos testosterona que los hombres. Esta diferencia hormonal hace que la hipertrofia extrema sea biológicamente muy difícil. Lo que el entrenamiento de fuerza pesado sí produce en mujeres: mayor densidad ósea, mejor postura, aumento del metabolismo basal (el músculo quema más calorías en reposo) y el tono que se busca, que es simplemente músculo visible bajo baja grasa.",p2:"El programa más efectivo para mujeres que quieren tonificar: 3-4 días de fuerza por semana con progresión de cargas. Los movimientos compuestos como sentadilla, peso muerto, press y remo trabajan más músculos, generan más respuesta hormonal y queman más. Olvida las mancuernas de 2kg en 30 repeticiones: no estimulan músculo ni cambian la composición corporal de forma significativa.",tips:["Movimientos compuestos: squat, deadlift, press, remo","Progresión de cargas: la clave del cambio real","3-4 días de fuerza por semana","Sin suficiente proteína, la fuerza no transforma","Las mujeres no se ponen voluminosas: la biología lo impide"]},
+{id:32,t:"HIIT de 20 minutos equivalente a 1 hora de cardio",cat:"fitness",tag:"HIIT",e:"🔥",bg:"bg8",au:"PT Carlos",min:8,v:"16K",ex:"La ciencia del entrenamiento intervalado y cómo comprimir los beneficios cardiovasculares en una fracción del tiempo.",p1:"El HIIT produce el efecto EPOC (consumo de oxígeno en exceso post-ejercicio): el cuerpo continúa quemando calorías a ritmo elevado hasta 24-48 horas después de la sesión. Estudios demuestran que 2.5h de HIIT semanal producen adaptaciones cardiovasculares equivalentes a 10.5h de cardio moderado, lo que lo hace enormemente eficiente en términos de tiempo.",p2:"Protocolo efectivo de 20 minutos: 5 minutos de calentamiento, luego 8 rondas de 20 segundos al máximo esfuerzo más 10 segundos de descanso (protocolo Tabata), seguido de 5 minutos de recuperación activa. Limitación importante: no más de 3 sesiones de HIIT por semana. La recuperación es donde ocurre la adaptación y sin suficiente recuperación no hay progreso.",tips:["Máximo 3 sesiones HIIT por semana","El EPOC quema calorías hasta 48h después","Tabata: 8 rondas de 20s intenso + 10s descanso","La recuperación es donde ocurre la adaptación","Combinar HIIT + fuerza + Zone 2 es óptimo"]},
+{id:33,t:"Yoga flow de 15 minutos para activar el cuerpo",cat:"fitness",tag:"Yoga",e:"🧘‍♀️",bg:"bg3",au:"Maya Instructora",min:6,v:"8.4K",ex:"La secuencia de yoga matutino que activa el sistema nervioso parasimpático y prepara el cuerpo para el día.",p1:"15 minutos de yoga suave por la mañana producen más beneficios que 1 hora de yoga semanal: la consistencia diaria cambia la flexibilidad funcional, la postura y el estado del sistema nervioso autónomo. La secuencia óptima para la mañana incluye cat-cow para movilidad espinal, warrior I y II para apertura de caderas, forward fold para liberar la cadena posterior, y shavasana de 2 minutos para activar el parasimpático.",p2:"Los beneficios documentados del yoga de 15 min diarios en 8 semanas: reducción del 30% en marcadores de cortisol, mejora de la variabilidad de la frecuencia cardíaca (HRV), reducción del dolor lumbar crónico y mejora de la calidad del sueño. El yoga nidra, que es meditación guiada en postura de yoga, tiene efectos todavía más potentes sobre la regulación del cortisol.",tips:["Cat-cow diario: la mejor inversión para la columna","15 minutos consistentes superan a 1 hora semanal","Warrior II alivia el dolor lumbar","2 min de shavasana activan el parasimpático","Yin yoga antes de dormir: mejora el sueño"]},
+{id:34,t:"Los 10.000 pasos: verdad vs mito desmentido por la ciencia",cat:"fitness",tag:"Caminar",e:"👟",bg:"bg2",au:"Dra. Fernández",min:7,v:"12K",ex:"El número mágico tiene un origen que no tiene nada de científico. Lo que la evidencia real dice.",p1:"El número 10.000 pasos fue creado por una empresa japonesa de podómetros en 1965 para su campaña de marketing, sin base científica alguna. Un estudio de 2021 en JAMA Internal Medicine encontró que los beneficios para la mortalidad se estabilizan alrededor de los 7.500 pasos. Otro estudio encontró que 4.400 pasos diarios ya reducen significativamente la mortalidad comparado con 2.700 pasos.",p2:"Lo que sí es real: cada 1.000 pasos adicionales por encima de una base baja tiene beneficios medibles en cardiovascular, metabolismo y humor. Y caminar a paso rápido tiene más beneficio que caminar lento para el mismo número de pasos. El objetivo real debería ser moverse más que ayer con un mínimo de 5.000-7.500 pasos como umbral de beneficio real respaldado por evidencia.",tips:["7.500 pasos es suficiente para beneficio cardiovascular","La velocidad importa tanto como la cantidad","5 min de movimiento tras cada hora sentada","Caminar post-comida reduce el pico glucémico 30%","Los primeros pasos desde sedentarismo tienen mayor beneficio"]},
+{id:35,t:"Pilates vs yoga: cuál elegir para tu objetivo",cat:"fitness",tag:"Pilates",e:"🩰",bg:"bg3",au:"Studio Flex",min:7,v:"8.1K",ex:"Las diferencias reales entre las dos prácticas más populares del bienestar y cómo elegir según tu cuerpo.",p1:"El pilates se enfoca en el fortalecimiento del core (faja abdominal profunda, suelo pélvico, estabilizadores espinales) a través de movimiento controlado con resistencia. Sus beneficios más documentados son la mejora del dolor lumbar, la corrección postural y el control neuromuscular. El yoga combina fuerza, flexibilidad y regulación del sistema nervioso con un componente mental más marcado.",p2:"Para elegir: si tu objetivo principal es dolor lumbar o hernia, el pilates es superior y más específico. Si tienes ansiedad o estrés crónico, el yoga trabaja más directamente el sistema nervioso. Si quieres tonificación específica de core y glúteos, pilates en reformer es ideal. Si quieres flexibilidad integral y trabajo mental, yoga. Lo óptimo para la mayoría: 2 días de pilates más 1 día de yoga.",tips:["Dolor lumbar: pilates es más específico","Ansiedad: yoga trabaja el sistema nervioso","Pilates en reformer: tonificación de core","Yoga con pesas: la combinación más completa","Ambos son superiores al running en lesiones de rodilla"]},
+{id:36,t:"Recuperación muscular: lo que más importa según la ciencia",cat:"fitness",tag:"Recuperación",e:"💪",bg:"bg5",au:"Sports Science",min:8,v:"7.2K",ex:"La recuperación es donde ocurre el crecimiento. La mayoría la gestiona mal y pierde el 40% del progreso.",p1:"La síntesis proteica muscular ocurre principalmente entre 24-48h después del entrenamiento. Durante ese tiempo, la proteína a 1.6-2g por kg diarios, el sueño profundo (donde se liberan hormonas de crecimiento), y el descanso activo con Zone 2 suave son los tres pilares de la recuperación óptima que determinan si el entrenamiento produce resultado o no.",p2:"Lo que sí funciona para la recuperación: baño de contraste calor-frío, sueño de 8 horas, proteína dentro de la primera hora post-entrenamiento, y curcumina con piperina para reducir la inflamación muscular. El foam roller mejora la sensación de dolor pero según meta-análisis recientes no mejora la recuperación real de forma significativa.",tips:["Sueño 8h: el mejor suplemento de recuperación","Proteína post-entrenamiento en la primera hora","Baño de contraste: recuperación más rápida","Curcumina con piperina: reduce inflamación muscular","La recuperación es donde ocurre el crecimiento"]},
+{id:37,t:"Neuroplasticidad: cómo reentrenar tu cerebro para la felicidad",cat:"mente",tag:"Neurociencia",e:"🧠",bg:"bg3",au:"Dr. Jiménez",min:8,v:"9.2K",ex:"El cerebro puede cambiar físicamente con los hábitos correctos. Esta es la ciencia y el protocolo práctico.",p1:"La neuroplasticidad es la capacidad del cerebro de reorganizarse formando nuevas conexiones neurales. Se activa con novedad al aprender algo nuevo, con el ejercicio aeróbico que dispara el BDNF (el fertilizante cerebral) con 20-30 minutos de cardio moderado, con meditación que aumenta el grosor cortical en el córtex prefrontal en 8 semanas de práctica diaria, y con el sueño profundo que consolida los nuevos circuitos.",p2:"Práctica diaria de neuroplasticidad positiva: aprender algo nuevo 20 minutos al día, meditación de atención plena 10 minutos, ejercicio aeróbico mínimo 25 minutos, y escribir sobre las emociones, lo cual literalmente crea nuevas vías neurales en el área de regulación emocional. El cambio estructural en el cerebro es medible en scanner a las 8 semanas de práctica consistente.",tips:["Ejercicio aeróbico: dispara el BDNF cerebral","Meditación 10 min: aumenta el grosor cortical en 8 semanas","Aprender algo nuevo activa la neuroplasticidad","Escribir sobre emociones crea nuevas vías neurales","Sueño profundo consolida los nuevos circuitos"]},
+{id:38,t:"Dopamine menu: diseña tu semana para más felicidad",cat:"mente",tag:"Dopamina",e:"🎨",bg:"bg4",au:"Editorial",min:8,v:"24K",ex:"El dopamine menu es la estrategia más práctica para mantener la motivación y el bienestar a largo plazo.",p1:"La dopamina no es solo el neurotransmisor del placer: es el de la anticipación y la motivación. El problema moderno es que las fuentes de dopamina rápida como las redes sociales, el azúcar y el entretenimiento pasivo desensibilizan los receptores, haciendo que las fuentes naturales como los logros, las relaciones y la naturaleza generen menos respuesta satisfactoria.",p2:"El dopamine menu se divide en aperitivos (5-10 minutos, música que amas, gratitud), entrantes (30-60 minutos, ejercicio, cocinar, socializar) y platos principales (varios días, viajes, proyectos creativos, aprendizaje). La clave es equilibrar los rápidos y evitar el acceso ilimitado a fuentes que desensibilizan. La anticipación genera más dopamina que la recompensa misma.",tips:["Diseña tu lista por nivel de dopamina","Limita fuentes que desensibilizan: redes, azúcar","La anticipación genera más dopamina que la recompensa","Combinar esfuerzo + logro: la fuente más sostenible","Dopamine fasting parcial: reset de receptores en 48-72h"]},
+{id:39,t:"Meditación de 10 minutos que cambia tu día",cat:"mente",tag:"Meditación",e:"🧘‍♀️",bg:"bg3",au:"Sofia Chen",min:5,v:"15K",ex:"No necesitas horas de meditación. Este protocolo de 10 minutos reduce el cortisol y mejora el foco realmente.",p1:"Diez minutos de meditación de atención plena reducen los niveles de cortisol en un 14% según estudio de la Universidad de Carnegie Mellon y mejoran el foco y la memoria de trabajo. La meditación NSDR (Non-Sleep Deep Rest) o yoga nidra de 10-20 minutos restaura el rendimiento cognitivo equivalente a 90 minutos de sueño según investigaciones de Stanford.",p2:"Protocolo de 10 minutos para principiantes: siéntate cómodamente, cierra los ojos, pon atención en la sensación del aire entrando y saliendo por la nariz. Cuando la mente se vaya, y siempre se irá, simplemente nota que se fue y vuelve suavemente a la respiración. La calidad no es no pensar sino cuántas veces notas que te has ido y vuelves voluntariamente.",tips:["10 minutos diarios producen efectos medibles","La clave no es no pensar sino notar y volver","Por la mañana activa el córtex prefrontal","NSDR a las 14h restaura como si hubiera dormido","Waking Up o Calm: apps con guías en español"]},
+{id:40,t:"Box breathing: la técnica de los Navy SEALs para el estrés",cat:"mente",tag:"Respiración",e:"🌬️",bg:"bg5",au:"Coach Ruiz",min:5,v:"8.5K",ex:"La técnica de respiración que las fuerzas especiales usan para regular el sistema nervioso en máxima presión.",p1:"El box breathing activa el nervio vago y el sistema nervioso parasimpático en cuestión de minutos. La técnica: inhala 4 segundos, mantén 4 segundos, exhala 4 segundos, mantén 4 segundos. 4 ciclos completos, que son 2 minutos, son suficientes para notar la reducción de frecuencia cardíaca. Funciona porque la exhalación controlada activa el reflejo baroreceptor que frena el sistema simpático.",p2:"Para máxima efectividad: la exhalación debe ser igual o más larga que la inhalación. La respiración 4-7-8 (inhala 4, mantén 7, exhala 8) es todavía más potente para calmar el sistema nervioso. Practicarla diariamente, no solo en momentos de estrés, entrena el sistema nervioso autónomo para ser más resiliente de forma crónica. 5 minutos al día durante 3 semanas producen cambios medibles en HRV.",tips:["4-4-4-4 (box) o 4-7-8 para máximo efecto","2 minutos son suficientes para notar la diferencia","La exhalación larga activa el parasimpático","Practica diariamente para entrenar el sistema nervioso","Úsala antes de dormir para mejorar la calidad del sueño"]},
+{id:41,t:"Burnout: las 12 señales tempranas y cómo prevenirlo",cat:"mente",tag:"Burnout",e:"😮‍💨",bg:"bg8",au:"Psic. Morales",min:10,v:"18K",ex:"El agotamiento crónico tiene señales físicas y mentales que aparecen meses antes del colapso total.",p1:"El burnout no llega de repente sino que se construye en tres fases. Fase 1 (meses 1-6): entusiasmo excesivo, trabajar más horas de lo necesario, descuidar relaciones personales. Fase 2 (meses 6-12): cinismo, irritabilidad, dificultad para concentrarse, sueño alterado, enfermarse más frecuentemente. Fase 3: colapso emocional e incapacidad para trabajar con normalidad.",p2:"Las señales físicas tempranas más ignoradas: dormir mucho y despertar cansada, infecciones frecuentes por sistema inmune bajo, dolor de estómago crónico, y palpitaciones en reposo. Prevención efectiva: límites claros de trabajo, actividad física regular, conexión social de calidad, una actividad creativa sin objetivo de productividad, y vacaciones reales sin revisar el email.",tips:["Fase 1: el exceso de entusiasmo es la primera señal","Infecciones frecuentes: el sistema inmune lleva la cuenta","Límites claros de trabajo son prevención, no pereza","Una actividad creativa sin objetivo es sanadora","Vacaciones sin emails: prevención médica, no lujo"]},
+{id:42,t:"Melatonina: la dosis exacta y el timing que sí funcionan",cat:"sueno",tag:"Melatonina",e:"🌙",bg:"bg6",au:"Dr. Sanz",min:7,v:"15K",ex:"La mayoría toma el doble de lo necesario en el momento equivocado. El protocolo correcto según somnólogos.",p1:"El error más común: dosis excesivas. El cerebro produce melatonina a niveles de 0.1-0.3mg naturalmente. Los suplementos de 5-10mg son hasta 100 veces más de lo que el cuerpo necesita, lo que puede desensibilizar los receptores con el tiempo y empeorar el insomnio a largo plazo. La dosis óptima es 0.1-0.5mg tomada 30-60 minutos antes de dormir.",p2:"El timing importa más que la dosis. La melatonina no hace dormir directamente sino que señaliza al cuerpo que es de noche. Por eso funciona mejor para jet lag y trabajo por turnos que para insomnio puro. Para insomnio crónico, la TCC-I (terapia cognitivo-conductual para el insomnio) tiene efectos más duraderos y sin dependencia.",tips:["0.1-0.5 mg es la dosis eficaz: menos es más","Tómala 30-60 min antes de la hora deseada","Para jet lag: tómala en el horario nocturno del destino","Dosis altas desensibilizan receptores con el tiempo","Para insomnio crónico, TCC-I es superior a largo plazo"]},
+{id:43,t:"Rutina nocturna de 45 minutos para despertar renovada",cat:"sueno",tag:"Rutina Noche",e:"🛁",bg:"bg3",au:"Wellness Marta",min:8,v:"11K",ex:"El protocolo de noche que regula el sistema nervioso, prepara la piel y garantiza un sueño profundo.",p1:"La rutina óptima comienza 90 minutos antes de dormir: bajar la temperatura del dormitorio a 18-20°C (el sueño profundo requiere que la temperatura corporal descienda), evitar pantallas o usar filtro de luz azul, y hacer la rutina de skincare nocturna. A los 60 minutos: baño o ducha con agua caliente, cuya bajada posterior de temperatura corporal induce el sueño de forma natural y efectiva.",p2:"A los 30 minutos: preparación mental con 10 minutos de meditación, escritura de preocupaciones del día en papel, o lectura física sin contenido estimulante. El magnesio bisglicinato de 200-400mg tomado 30-45 minutos antes de dormir mejora la profundidad del sueño. La oscuridad total del dormitorio es crucial ya que incluso pequeñas luces de dispositivos afectan la melatonina.",tips:["Temperatura del dormitorio: 18-20°C para sueño profundo","Baño caliente 1h antes: la bajada posterior induce sueño","Magnesio bisglicinato 200-400mg antes de dormir","Journaling nocturno: vacía la mente ansiosa","Oscuridad total: el 1% de luz afecta la melatonina"]},
+{id:44,t:"Protocolo de sueño de los biohackers para máxima recuperación",cat:"sueno",tag:"Biohacking",e:"💤",bg:"bg6",au:"Bio Sleep Lab",min:9,v:"28K",ex:"Las prácticas avanzadas para maximizar el sueño profundo, el REM y la recuperación física y cognitiva.",p1:"El protocolo de sueño óptimo se basa en cinco pilares: consistencia de horario incluyendo fines de semana, exposición a luz solar en los primeros 30 minutos del día para calibrar el reloj circadiano, temperatura de dormitorio entre 18-19°C, oscuridad total, y silencio o ruido blanco. La consistencia del horario es el factor más determinante de todos por encima de cualquier suplemento.",p2:"El sueño profundo (N3) es donde ocurre la reparación física y la eliminación de desechos del cerebro mediante el sistema glinfático. El REM es donde ocurre la consolidación de la memoria y el procesamiento emocional. La suplementación con magnesio L-treonato que penetra la barrera hematoencefálica, teanina y ashwagandha es el stack más respaldado para mejorar la profundidad del sueño.",tips:["Mismo horario 7 días: el más importante de todos","Luz solar primeros 30 min: calibra el reloj circadiano","Oura Ring: el más preciso para seguimiento de sueño","Magnesio L-treonato: penetra la barrera hematoencefálica","El REM consolida la memoria y el aprendizaje"]},
+{id:45,t:"Magnesio: qué le pasa a tu cuerpo cuando lo tomas cada noche",cat:"sueno",tag:"Magnesio",e:"🌟",bg:"bg4",au:"Dr. Blanco",min:6,v:"22K",ex:"El mineral que el 68% de los adultos necesitan y que afecta al sueño, el estrés, los músculos y el sistema nervioso.",p1:"El magnesio participa en más de 300 reacciones enzimáticas y es cofactor de la síntesis de melatonina, GABA y serotonina. Su deficiencia se manifiesta como insomnio, calambres musculares nocturnos, ansiedad, fatiga crónica y constipación. Los cultivos modernos tienen 80% menos magnesio que hace 50 años, por lo que la dieta raramente cubre las necesidades mínimas de la mayoría.",p2:"Las distintas formas de magnesio tienen funciones específicas. Para sueño: bisglicinato (el más suave y absorbible) o L-treonato que penetra al cerebro. Para músculo y deporte: malato o citrato. Para estreñimiento: óxido (solo para este fin). La dosis estándar nocturna es 200-400mg de bisglicinato tomada 30-45 minutos antes de dormir.",tips:["Bisglicinato: la mejor forma para sueño","L-treonato: la única forma que penetra al cerebro","200-400mg antes de dormir: la dosis efectiva","Evita el óxido de magnesio: absorción muy baja","Calambres y ansiedad pueden ser déficit de magnesio"]},
+{id:46,t:"Cycle syncing: entrena y come según tu ciclo menstrual",cat:"hormonas",tag:"Ciclo",e:"🔴",bg:"bg1",au:"Dra. Vega",min:9,v:"22K",ex:"Adaptar el entrenamiento y la alimentación a las 4 fases del ciclo optimiza los resultados y reduce la fatiga.",p1:"El ciclo menstrual tiene 4 fases con perfiles hormonales distintos. Fase menstrual (días 1-5): estrógenos y progesterona bajas, energía baja, ideal para yoga y caminar. Fase folicular (días 6-13): estrógenos en subida, energía óptima, ideal para HIIT y fuerza pesada. Ovulación (días 14-16): pico de estrógenos y LH, máxima fuerza y resistencia.",p2:"Fase lútea (días 17-28): progesterona sube, temperatura corporal 0.3°C mayor, gasto calórico 200-300 kcal extra al día, más cravings de carbohidratos (señal biológica real de mayor necesidad energética). En esta fase el cuerpo necesita más proteína y más carbohidratos complejos. Reducir el cardio intenso y priorizar fuerza moderada y yoga reduce el PMS significativamente.",tips:["Fase folicular: máxima fuerza y HIIT","Fase lútea: más calorías y carbohidratos: es normal","Fase menstrual: yoga y descanso sin culpa","Cravings antes de la regla son señal biológica real","Magnesio extra en fase lútea: reduce el PMS"]},
+{id:47,t:"Cómo bajar el cortisol alto sin pastillas",cat:"hormonas",tag:"Cortisol",e:"⚖️",bg:"bg4",au:"Endocrinóloga Cruz",min:8,v:"14K",ex:"El cortisol elevado sabotea la pérdida de grasa, el sueño y la piel. Los protocolos que funcionan.",p1:"El cortisol crónico elevado causa retención de grasa abdominal, supresión del sistema inmune, deterioro de la calidad del sueño, acné hormonal y envejecimiento acelerado. Las causas más comunes: estrés laboral sostenido, privación de sueño, dietas muy restrictivas, cafeína en exceso o en horarios tardíos, y ejercicio de alta intensidad excesivo sin suficiente recuperación.",p2:"Protocolo para reducir el cortisol: ashwagandha KSM-66 a 300-600mg diarios reduce el cortisol un 27% en estudios de 8 semanas. Rhodiola rosea modula la respuesta al estrés. Eliminar cafeína después de las 14h es el cambio más impactante y más gratuito. Caminar en la naturaleza muestra reducción de cortisol del 12-15% en una sola sesión de 20 minutos según investigación japonesa.",tips:["Ashwagandha KSM-66: reduce cortisol 27% en 8 semanas","Sin cafeína después de las 14h","Caminar en naturaleza 20 min: reduce cortisol 12-15%","Ejercicio excesivo sin recuperación eleva el cortisol","Privación de sueño: causa más común e ignorada"]},
+{id:48,t:"Tiroides lenta: síntomas que se confunden con cansancio",cat:"hormonas",tag:"Tiroides",e:"🦋",bg:"bg2",au:"Dra. Morales",min:10,v:"16K",ex:"El hipotiroidismo subclínico afecta al 10% de mujeres y muchas no lo saben porque los síntomas se normalizan.",p1:"El hipotiroidismo tiene síntomas que se solapan con el agotamiento moderno: fatiga que no mejora con el descanso, frío constante, piel seca, caída del cabello especialmente en las cejas externas, estreñimiento, dificultad para perder peso, bradicardia y niebla mental. Estos síntomas aparecen gradualmente y muchas mujeres los normalizan durante años antes de recibir diagnóstico.",p2:"La analítica básica de tiroides debe incluir TSH más T4 libre más T3 libre más anticuerpos TPO. Muchos médicos solo piden TSH, que puede estar dentro del rango normal de 0.5-4.5 pero con T3 baja y síntomas presentes. El rango óptimo de TSH según endocrinólogos funcionales es 1-2.5. El yodo, el selenio y el zinc son los minerales más críticos para la función tiroidea.",tips:["Pide TSH + T4L + T3L + anticuerpos TPO","TSH óptima: 1-2.5, no solo dentro del rango","Selenio 200mcg: cofactor para conversión T4→T3","Gluten puede aumentar anticuerpos en Hashimoto","Caída de cejas externas: señal clásica de hipotiroidismo"]},
+{id:49,t:"Dominancia estrogénica: síntomas y cómo corregirla",cat:"hormonas",tag:"Estrógenos",e:"🫶",bg:"bg1",au:"Nutrióloga Alba",min:7,v:"11K",ex:"Un desequilibrio hormonal cada vez más común que causa dolor premenstrual, retención y fibromas.",p1:"La dominancia estrogénica ocurre cuando los estrógenos son altos en relación a la progesterona, no necesariamente con estrógenos absolutos altos. Síntomas: reglas abundantes y dolorosas, sensibilidad en senos, retención de líquidos en la segunda mitad del ciclo, hinchazón, ansiedad y dificultad para perder peso. Es favorecida por estrés crónico, exceso de grasa corporal y xenoestrógenos de plásticos y pesticidas.",p2:"Estrategias para reducirla: DIM (diindolilmetano, presente en crucíferas) favorece la metabolización de estrógenos por la vía saludable. El hígado es quien metaboliza los estrógenos: priorizar la salud hepática reduciendo el alcohol y apoyando con cardo mariano. Eliminar plásticos de alimentos y cosméticos. Aumentar fibra a 25-30g para la excreción de estrógenos por el intestino.",tips:["DIM de crucíferas: favorece metabolización sana","Fibra 25-30g diarios: esencial para excreción","Eliminar plásticos: xenoestrógenos disruptores","Hígado sano = metabolismo hormonal óptimo","El estrés cronifica la dominancia estrogénica"]},
+{id:50,t:"Los análisis de sangre que toda mujer debería hacerse",cat:"biohacking",tag:"Analíticas",e:"🩺",bg:"bg2",au:"Dra. Martín",min:10,v:"18K",ex:"El panel de analítica completo que la medicina funcional usa y que el sistema público raramente pide.",p1:"El panel mínimo anual más allá del básico: hemograma completo, glucosa en ayunas y HbA1c (marcadores metabólicos), perfil lipídico completo, función tiroidea completa (TSH, T4 libre, T3 libre, anticuerpos TPO), vitamina D 25-OH, B12, ferritina, folato, magnesio eritrocitario y PCR de alta sensibilidad para detectar inflamación silenciosa.",p2:"Los marcadores más olvidados pero más informativos: ferritina (el almacén de hierro que puede estar bajo con hemograma normal), vitamina D (el 40-60% de la población española tiene deficiencia severa), homocisteína (marcador de riesgo cardiovascular y déficit de B vitaminas) y DHEA-S (hormona suprarrenal que baja con el estrés crónico). Estos cuatro explican muchos casos de fatiga crónica inexplicable.",tips:["Ferritina óptima: 70-150 ng/mL","Vitamina D óptima: 50-70 ng/mL","PCR alta sensibilidad: detecta inflamación subclínica","HbA1c: el mejor marcador de salud metabólica","Pide DHEA-S si hay fatiga crónica con analítica normal"]},
+{id:51,t:"HRV: por qué medir la variabilidad del corazón",cat:"biohacking",tag:"HRV",e:"🫀",bg:"bg5",au:"Cardio Lab",min:7,v:"8.8K",ex:"El marcador de salud más completo que mide la resiliencia del sistema nervioso autónomo en tiempo real.",p1:"La variabilidad de la frecuencia cardíaca (HRV) mide la variación en milisegundos entre latidos consecutivos. Paradójicamente, mayor variabilidad significa mejor salud. Una HRV alta indica que el sistema nervioso autónomo puede alternar fluidamente entre simpático y parasimpático. La HRV baja es marcador de estrés crónico, sobreentrenamiento, enfermedad inminente y mala calidad de sueño.",p2:"Dispositivos para medir HRV: Oura Ring (el más preciso), Whoop, Apple Watch (menos preciso para HRV). Cómo usar la medición: tómala cada mañana al despertar antes de levantarte. Un HRV más bajo que tu media personal es señal de día de recuperación activa. El alcohol reduce el HRV hasta 2-3 noches después, incluso con cantidades moderadas.",tips:["Mayor HRV = mayor resiliencia del sistema nervioso","Mídela cada mañana antes de levantarte","Oura Ring: el más preciso para HRV","Alcohol: reduce el HRV hasta 3 noches después","HRV baja = señal para recuperación, no HIIT"]},
+{id:52,t:"Autofagia y detox celular: cómo activarla naturalmente",cat:"biohacking",tag:"Autofagia",e:"🧬",bg:"bg7",au:"Dr. Blanco",min:6,v:"10K",ex:"El proceso de limpieza celular que reduce el riesgo de enfermedades y ralentiza el envejecimiento.",p1:"La autofagia (literalmente comerse a uno mismo) es el proceso por el cual las células eliminan componentes dañados, proteínas mal plegadas y patógenos. Se activa por privación de nutrientes mediante el ayuno, el ejercicio y la restricción de calorías. A nivel celular, la autofagia reduce el riesgo de neurodegeneración, cáncer y enfermedades metabólicas. Yoshinori Ohsumi ganó el Nobel en 2016 por su investigación.",p2:"Formas naturales de activarla: ayuno de 14-16 horas (la autofagia se activa alrededor de las 12-16h de ayuno), ejercicio de resistencia intenso, restricción calórica moderada, café negro que inhibe mTOR, espermidina presente en trigo germinado y champiñones, y polifenoles como el resveratrol y la quercetina.",tips:["Ayuno 14-16h: la forma más efectiva","Café negro activa autofagia inhibiendo mTOR","Ejercicio de resistencia intenso: activa autofagia muscular","Espermidina en trigo germinado: activador potente","La autofagia funciona mejor sin insulina elevada"]},
+{id:53,t:"Duchas frías: los beneficios reales separados del hype",cat:"biohacking",tag:"Frío",e:"🌊",bg:"bg5",au:"Cold Science",min:7,v:"15K",ex:"Las duchas frías están en todas partes. Separamos la ciencia real de la mitología biohacker.",p1:"Los beneficios reales y demostrados de la exposición al frío: aumento de norepinefrina del 280-300% con inmersión en agua a 14°C, lo que mejora el foco, humor y atención durante horas. Activación del tejido adiposo marrón que quema grasa para generar calor. Mejora de la sensibilidad a la insulina. Reducción de marcadores de inflamación con práctica regular y sostenida.",p2:"Lo que no está demostrado con las simples duchas frías: la ducha tiene mucho menos impacto que la inmersión real. Para beneficios cardiovasculares y de composición corporal significativos, necesitas inmersión en agua fría a 10-14°C dos o tres veces por semana. Empieza gradualmente terminando tu ducha normal con 30-90 segundos de agua fría durante las primeras semanas.",tips:["Termina tu ducha con 30-90 seg de agua fría","Inmersión en bañera: significativamente más efectiva","La norepinefrina sube 280% con agua a 14°C","Por la mañana: activa; por la noche: puede dificultar el sueño","Empieza por semanas con agua fresca antes de fría"]},
+{id:54,t:"Sauna: el protocolo para máximos beneficios cardiovasculares",cat:"biohacking",tag:"Sauna",e:"🔥",bg:"bg8",au:"Thermal Health",min:8,v:"9.1K",ex:"Los estudios finlandeses que demuestran que 4 sesiones semanales de sauna reducen el riesgo cardiovascular un 48%.",p1:"La investigación más importante sobre sauna es del Dr. Jari Laukkanen en Finlandia: un estudio de 20 años con 2.315 participantes demostró que 4-7 sesiones de sauna por semana reducen el riesgo de muerte cardiovascular un 50% y la demencia un 65%. El mecanismo incluye que la sauna eleva el gasto cardíaco equivalente a ejercicio aeróbico moderado, mejora la función endotelial y reduce la inflamación.",p2:"El protocolo basado en investigación: 80-100°C durante 15-20 minutos, 3-4 rondas, con inmersión en frío entre rondas para activar la proteína de choque térmico. La deshidratación es el mayor riesgo: bebe 500ml de agua por cada ronda. La ducha fría posterior al calor tiene el mayor efecto en los marcadores cardiovasculares. Evitar sauna las 4h antes de dormir si dificulta el sueño.",tips:["4 sesiones semanales: máximo beneficio cardiovascular","80-100°C durante 15-20 min por ronda","Ducha fría entre rondas: maximiza los efectos","500ml de agua por ronda para hidratación","No combines alcohol y sauna: es el mayor riesgo"]},
+{id:55,t:"Ashwagandha, rhodiola o lion's mane: cuál elegir",cat:"suplementos",tag:"Adaptógenos",e:"🍄",bg:"bg2",au:"Herbal Science",min:8,v:"12K",ex:"Los tres adaptógenos más populares con mecanismos distintos. Cuál tomar según tu objetivo concreto.",p1:"Ashwagandha KSM-66 o Sensoril es el más respaldado para reducir cortisol un 27% en 8 semanas, mejorar el sueño, la resistencia al estrés y la libido. Mejor para ansiedad crónica, cortisol alto y recuperación. Rhodiola rosea actúa más rápido, mejora el rendimiento cognitivo bajo estrés y la resistencia física. Mejor para fatiga mental, agotamiento por sobretrabajo y rendimiento deportivo.",p2:"Lion's mane (Hericium erinaceus) estimula el NGF (factor de crecimiento nervioso) y BDNF, mejorando la neuroplasticidad, la memoria y el foco. No actúa rápido: necesita 4-8 semanas para efectos cognitivos. El stack matutino más popular: lion's mane más rhodiola para el día. La ashwagandha es mejor tomarla por la noche por su efecto sobre el cortisol y la relajación.",tips:["Ashwagandha: ansiedad y cortisol","Rhodiola: rendimiento y fatiga mental","Lion's mane: foco y memoria a largo plazo","Ashwagandha por la noche; los otros por la mañana","Da 4-8 semanas antes de evaluar cualquier adaptógeno"]},
+{id:56,t:"Vitamina D3+K2: el dúo que el 60% necesita y no toma",cat:"suplementos",tag:"Vitamina D",e:"☀️",bg:"bg4",au:"Dr. Ortiz",min:7,v:"11K",ex:"La deficiencia más común en España. Sus consecuencias van mucho más allá de los huesos.",p1:"La vitamina D3 no es solo para los huesos: regula la expresión de más de 1.000 genes, es fundamental para el sistema inmune reduciendo la susceptibilidad a infecciones respiratorias, mejora el humor y reduce el riesgo de depresión estacional. El rango óptimo en sangre es 50-70 ng/mL, pero el 60% de los españoles están por debajo de 20 ng/mL, en déficit claro.",p2:"La K2 (MK-7) es esencial para tomar con la D3: dirige el calcio a los huesos y los dientes donde debe ir y evita que se deposite en las arterias. Sin K2, la D3 a dosis altas puede aumentar el calcio arterial. La dosis estándar sin analítica previa: D3 2000-4000 UI más K2 MK-7 90-200 mcg diarios con la comida más grasa del día.",tips:["El 60% de españoles tienen déficit severo de D3","D3 siempre con K2 MK-7 para evitar calcificación","Tómala con la comida más grasa: es liposoluble","Analítica cada 6 meses para ajustar dosis","2000-4000 UI diarios: dosis de mantenimiento segura"]},
+{id:57,t:"Zinc: el mineral que transforma la piel y el cabello",cat:"suplementos",tag:"Zinc",e:"💎",bg:"bg3",au:"Mineral Lab",min:6,v:"7.4K",ex:"El segundo mineral más abundante en el cuerpo humano y uno de los más deficitarios en dietas modernas.",p1:"El zinc es fundamental para la cicatrización de la piel y la reducción del acné (inhibe la bacteria P. acnes y reduce la producción de sebo), el crecimiento del cabello (la deficiencia causa alopecia difusa), la función inmune y la síntesis de testosterona. El acné moderado responde a zinc bisglicinato de 30mg al día de forma comparable a los antibióticos tópicos pero sin sus efectos secundarios.",p2:"Las mejores formas: bisglicinato o picolinato (alta biodisponibilidad, mínimos efectos gastrointestinales). Evitar el óxido de zinc oral que tiene absorción mínima. Dosis: 15-30mg al día como suplemento, nunca en ayunas para evitar náuseas. El zinc compite con el cobre en la absorción: si suplementas más de 30mg por más de 6 meses, añade 2mg de cobre.",tips:["Zinc bisglicinato 30mg: efectivo contra el acné","Nunca en ayunas: causa náuseas","Más de 30mg por 6 meses: añade 2mg de cobre","Picolinato o bisglicinato: las formas más absorbibles","Caída difusa del cabello: descarta déficit de zinc"]},
+{id:58,t:"Microbioma intestinal: los 5 hábitos que más lo cuidan",cat:"digestion",tag:"Microbioma",e:"🦠",bg:"bg2",au:"Gut Health Institute",min:9,v:"13K",ex:"Tu microbioma controla el 70% de tu sistema inmune y produce el 95% de tu serotonina. Cuídalo así.",p1:"El microbioma intestinal es el ecosistema de trillones de bacterias que vive en tu intestino. Su diversidad está directamente relacionada con la salud inmune, mental y metabólica. Los hábitos que más lo dañan: antibióticos sin probióticos de recuperación, dieta baja en fibra, alcohol, estrés crónico (el eje intestino-cerebro es bidireccional) y exceso de desinfectantes.",p2:"Los hábitos que más lo mejoran: 30 plantas diferentes por semana (el mayor predictor de diversidad según el estudio de Tim Spector), fermentados diarios como kéfir, kimchi, miso o kombucha, fibra prebiótica de cebolla, ajo, plátano verde y avena, ejercicio moderado que aumenta Lactobacillus, y sueño de calidad.",tips:["30 plantas por semana: el mayor predictor de diversidad","Fermentados diarios: kéfir, kimchi, miso","Fibra prebiótica: el alimento de las bacterias beneficiosas","El estrés crónico destruye el microbioma en semanas","Tras antibióticos: probiótico 10 UFC mínimo 4 semanas"]},
+{id:59,t:"Leaky gut: síntomas, diagnóstico y protocolo de reparación",cat:"digestion",tag:"Intestino",e:"🫄",bg:"bg1",au:"Dr. Pérez",min:10,v:"8.7K",ex:"La permeabilidad intestinal puede ser la raíz de problemas de piel, autoinmunidad, fatiga y alergias.",p1:"La permeabilidad intestinal aumentada ocurre cuando las uniones estrechas entre las células intestinales se debilitan, permitiendo que moléculas bacterianas entren al torrente sanguíneo y activen una respuesta inflamatoria sistémica. Se manifiesta como piel inflamada, alergias e intolerancias nuevas, niebla mental, fatiga crónica y articulaciones dolorosas.",p2:"El protocolo de reparación conocido como las 4R: Remove (eliminar irritantes: gluten en sensibles, lácteos, alcohol, AINES), Replace (añadir enzimas digestivas), Reinoculate (probióticos 50 billones UFC más prebióticos) y Repair (glutamina 5-10g al día, zinc carnosina, colágeno). Este protocolo durante 6-8 semanas repara la barrera intestinal en la mayoría de casos.",tips:["Glutamina 5-10g al día: el reparador intestinal más respaldado","Zinc carnosina: repara específicamente la mucosa","Eliminar gluten y alcohol es el primer paso","Probióticos a 50 billones UFC para repoblación","El colágeno aporta glicina esencial para la mucosa"]},
+{id:60,t:"Caída del cabello en mujeres: causas y soluciones reales",cat:"cabello",tag:"Alopecia",e:"💇‍♀️",bg:"bg3",au:"Tricóloga Blanco",min:11,v:"19K",ex:"Las 7 causas más comunes de la caída femenina que los médicos tardan en diagnosticar.",p1:"Las causas más frecuentes de caída femenina ordenadas por prevalencia: déficit de ferritina (la mayoría de tricólogos piden ferritina mayor de 70 para crecimiento óptimo), hipotiroidismo, déficit de zinc, déficit de vitamina D, efluvio telógeno post-estrés (el cabello cae 2-3 meses después del evento estresante, no durante), exceso de andrógenos, y déficit de biotina.",p2:"Antes de gastar en suplementos capilares caros, hazte la analítica: ferritina, TSH más T4 libre, zinc, vitamina D, hemograma e hierro sérico. El 80% de los casos de caída femenina tienen causa corregible. El tratamiento más respaldado científicamente y más efectivo: minoxidil tópico al 2-5%, que funciona en la mayoría de tipos de alopecia no cicatricial.",tips:["Ferritina: el primer marcador que verificar","La caída sucede 2-3 meses después del estrés, no durante","Minoxidil 2-5% tópico: el tratamiento más efectivo","Biotina solo ayuda si hay déficit confirmado","MSM 1g/día: mejora la calidad del cabello en estudios"]},
+{id:61,t:"Aceites para el cuero cabelludo: cuál usar y cómo",cat:"cabello",tag:"Aceites",e:"🫙",bg:"bg2",au:"Hair Lab",min:6,v:"7.8K",ex:"Los aceites con respaldo científico para estimular el crecimiento, reducir la caída y mejorar la densidad.",p1:"El aceite de romero demostró en un estudio de 2015 ser tan efectivo como el minoxidil al 2% para el crecimiento capilar a los 6 meses, con menos efectos secundarios. El mecanismo es la estimulación de la circulación del cuero cabelludo. Aplica 3-5 gotas directamente sobre el cuero cabelludo y masajea durante 3-5 minutos; deja actuar mínimo 30 minutos antes de lavar.",p2:"Otros aceites con evidencia: aceite de ricino (castor oil) con ricinoleic acid que mejora la circulación capilar. El aceite de argán es el mejor para las puntas ya que sella la cutícula. Para cueros cabelludos con caspa: aceite de árbol de té al 5% en champú tiene evidencia para reducir Malassezia. El aceite de coco penetra el tallo capilar mejor que ningún otro aceite.",tips:["Aceite de romero: tan efectivo como minoxidil 2%","Masaje de cuero cabelludo 3-5 min: estimula circulación","Aceite de argán para puntas: sella la cutícula","Aceite de árbol de té 5%: específico para caspa","Aceite de coco: el mejor protector proteico del tallo"]},
+{id:62,t:"Zonas azules: los 9 hábitos de quienes viven más y mejor",cat:"longevidad",tag:"Zonas Azules",e:"🌍",bg:"bg2",au:"Blue Zones Research",min:9,v:"11K",ex:"Las cinco zonas del mundo con mayor concentración de centenarios tienen más en común de lo que imaginas.",p1:"Las cinco zonas azules (Cerdeña, Okinawa, Nicoya, Loma Linda, Icaria) comparten 9 denominadores comunes llamados Power 9: mover el cuerpo de forma natural e inconsciente todo el día, tener propósito de vida (ikigai en japonés), rituales de reducción del estrés como siesta o meditación, regla del 80% para dejar de comer cuando se está 80% lleno, y dieta basada en plantas con legumbres como base.",p2:"El resto del Power 9: alcohol moderado con contexto social (vino con amigos y comida), pertenencia a comunidad con propósito compartido, comunidad que apoya hábitos saludables, y familia primero en la jerarquía de valores. La soledad es el mayor factor de riesgo de muerte prematura, equivalente a fumar 15 cigarrillos al día según meta-análisis recientes.",tips:["Propósito de vida: el factor más diferenciador","Regla del 80%: para cuando sientes el 80% de saciedad","Legumbres diarias: el alimento de los centenarios","La conexión social protege igual que el ejercicio","Movimiento natural todo el día supera al gym puntual"]},
+{id:63,t:"Telómeros: cómo ralentizar el reloj biológico",cat:"longevidad",tag:"Telómeros",e:"⏳",bg:"bg3",au:"Dr. Blackburn",min:9,v:"8.3K",ex:"Los telómeros son los relojes biológicos de cada célula. La ciencia ha descubierto formas reales de ralentizar su acortamiento.",p1:"Los telómeros son las tapas protectoras de los cromosomas. Se acortan con cada división celular, y cuando alcanzan una longitud mínima la célula muere o entra en senescencia. Elizabeth Blackburn ganó el Nobel de Medicina en 2009 por descubrir la telomerasa, la enzima que repara y alarga los telómeros. Su longitud es uno de los mejores marcadores del envejecimiento biológico.",p2:"Hábitos que acortan los telómeros de forma acelerada: estrés crónico, sedentarismo, dieta inflamatoria, privación de sueño y tabaco. Hábitos que los protegen: ejercicio aeróbico moderado regular que activa la telomerasa, meditación de 12 minutos diarios según estudio de UC Davis, omega-3 EPA+DHA, vitamina D3 en rango óptimo y una dieta mediterránea con abundantes polifenoles.",tips:["Meditación 12 min diarios: activa la telomerasa","Omega-3 EPA+DHA: uno de los más protectores","El estrés crónico: mayor acelerador del acortamiento","Ejercicio aeróbico moderado activa la telomerasa","Vitamina D3 en rango óptimo correlaciona con telómeros más largos"]},
+{id:64,t:"Energía sin cafeína: el protocolo completo",cat:"energia",tag:"Energía Natural",e:"⚡",bg:"bg4",au:"Bioenergética Lab",min:9,v:"14K",ex:"Las causas reales de la fatiga que ningún café puede solucionar y el protocolo que las aborda en su raíz.",p1:"Las causas más comunes de fatiga crónica que se ignoran: déficit de vitamina D (el 60% de la población española), niveles bajos de ferritina aunque la hemoglobina sea normal, deshidratación subclínica (la sed aparece con 2% de deshidratación que ya reduce el rendimiento cognitivo), y apnea del sueño no diagnosticada que afecta al 30% de adultos con sobrepeso.",p2:"El protocolo de energía sin estimulantes: exposición a luz solar en los primeros 30 minutos del día para regular el cortisol circadiano y la dopamina, desayuno con proteína para estabilizar la glucosa durante las primeras horas, hidratación de 500ml al despertar antes del café, movimiento de 10 minutos a media tarde como el mayor antídoto natural a la fatiga vespertina.",tips:["500ml de agua al despertar: cambia la energía del día","Luz solar primeros 30 min: activa dopamina y cortisol","Desayuno rico en proteína: estabiliza energía 4-5h","10 min de movimiento a las 15h: elimina la fatiga vespertina","Analítica: descarta déficit de D3, ferritina y tiroides"]}
+];
+
+// ===== ROUTER & STATE =====
+let currentView = 'home';
+let currentParam = null;
+
+function goTo(view, param) {
+  currentView = view;
+  currentParam = param || null;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function scrollToNL() {
+  goTo('home');
+  setTimeout(()=>{
+    const el = document.getElementById('newsletter');
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  }, 400);
+}
+
+// ===== HELPERS =====
+function byCat(cat, limit) {
+  const r = ARTICLES.filter(a=>a.cat===cat);
+  return limit ? r.slice(0,limit) : r;
+}
+function byIds(ids) {
+  return ids.map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean);
+}
+function search(q) {
+  const ql = q.toLowerCase();
+  return ARTICLES.filter(a=>
+    a.t.toLowerCase().includes(ql) ||
+    a.tag.toLowerCase().includes(ql) ||
+    a.ex.toLowerCase().includes(ql) ||
+    a.cat.toLowerCase().includes(ql)
+  );
+}
+
+function card(a, dark) {
+  const cls = dark ? 'acard acard-dark' : 'acard';
+  return `<a class="${cls}" href="#" onclick="goTo('article',${a.id});return false">
+    <div class="ci ${a.bg}">${a.e}</div>
+    <div class="cb">
+      <span class="ct">${a.tag}</span>
+      <div class="ctitle">${a.t}</div>
+      <div class="cm">${a.au} · ${a.min} min · ${a.v} lecturas</div>
+    </div>
+  </a>`;
+}
+
+function gcard(a) {
+  return `<a class="gcard" href="#" onclick="goTo('article',${a.id});return false">
+    <div class="gci">
+      <div class="gcbg ${a.bg}">${a.e}</div>
+      <div class="gcov"></div>
+      <div class="gcc">
+        <p class="gc-tag">${a.tag} · ${a.min} min</p>
+        <div class="gc-t">${a.t}</div>
+        <p class="gc-m">${a.au} · ${a.v} lecturas</p>
+      </div>
+    </div>
+  </a>`;
+}
+
+function masonCard(a, hcls) {
+  return `<a class="mason-item" href="#" onclick="goTo('article',${a.id});return false">
+    <div class="mimg ${hcls} ${a.bg}">${a.e}</div>
+    <div class="mb">
+      <p class="mtag">${a.tag}</p>
+      <div class="mt">${a.t}</div>
+      <div class="mm">${a.au} · ${a.min} min</div>
+    </div>
+  </a>`;
+}
+
+function trItem(a, n) {
+  return `<a class="tr-item" href="#" onclick="goTo('article',${a.id});return false">
+    <div class="tr-n">0${n}</div>
+    <div><div class="tr-t">${a.t}</div><div class="tr-m">${a.tag} · ${a.min} min · ${a.v}</div></div>
+    <div class="tr-e">${a.e}</div>
+  </a>`;
+}
+
+function secHead(eye, title, cat, dark) {
+  const eLit = dark ? 's-eye s-eye-lt' : 's-eye';
+  const tCol = dark ? 'style="color:var(--c)"' : '';
+  const emCol = dark ? 'style="color:var(--bl)"' : '';
+  const aCol = dark ? 'class="va va-lt"' : 'class="va"';
+  return `<div class="s-head">
+    <div><p class="${eLit}">${eye}</p><h2 class="s-title" ${tCol}>${title}</h2></div>
+    ${cat ? `<a ${aCol} href="#" onclick="goTo('cat','${cat}');return false">Ver todos →</a>` : ''}
+  </div>`;
+}
+
+function footer() {
+  const cats1 = ['skincare','glowup','nutricion','fitness','mente','sueno'];
+  const cats2 = ['hormonas','biohacking','suplementos','digestion','cabello','longevidad'];
+  return `<footer>
+    <div class="ft-grid">
+      <div><div class="ft-logo">LUMI<span>NA</span></div>
+      <p class="ft-desc">Tu revista de salud, bienestar y glow up. Información basada en evidencia para tu mejor versión.</p></div>
+      <div><p class="ft-ht">Secciones</p><ul class="ft-links">
+        ${cats1.map(k=>`<li><a href="#" onclick="goTo('cat','${k}');return false">${CATS[k].n}</a></li>`).join('')}
+      </ul></div>
+      <div><p class="ft-ht">Más categorías</p><ul class="ft-links">
+        ${cats2.map(k=>`<li><a href="#" onclick="goTo('cat','${k}');return false">${CATS[k].n}</a></li>`).join('')}
+      </ul></div>
+      <div><p class="ft-ht">Lumina</p><ul class="ft-links">
+        <li><a href="#" onclick="goTo('home');return false">Inicio</a></li>
+        <li><a href="#" onclick="scrollToNL();return false">Newsletter</a></li>
+        <li><a href="#" onclick="goTo('search','trending');return false">Tendencias</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">© 2025 Lumina. Hecho con 💛 en Madrid.</p>
+      <div class="ft-soc">
+        <a href="#" class="soc-b" onclick="return false">📸</a>
+        <a href="#" class="soc-b" onclick="return false">🎵</a>
+        <a href="#" class="soc-b" onclick="return false">🐦</a>
+      </div>
+    </div>
+  </footer>`;
+}
+
+function nlSection() {
+  return `<div class="nl-sec" id="newsletter">
+    <h2 class="nl-t">Tu dosis semanal de <em>bienestar</em></h2>
+    <p class="nl-s">Artículos curados, rituales y los mejores tips de glow up — cada lunes.</p>
+    <div class="nl-form" id="nl-form">
+      <input type="email" id="nl-email" placeholder="tu@email.com" class="nl-in">
+      <button class="nl-btn" onclick="subscribeNL()">Unirme gratis</button>
+    </div>
+    <div class="nl-ok" id="nl-ok">✓ ¡Bienvenida! Te escribiremos cada lunes 🌿</div>
+  </div>`;
+}
+
+function subscribeNL() {
+  const e = document.getElementById('nl-email');
+  if(e && e.value && e.value.includes('@')) {
+    document.getElementById('nl-form').style.display='none';
+    document.getElementById('nl-ok').style.display='block';
+  }
+}
+
+function doSearch() {
+  const q = document.getElementById('srch-in')?.value?.trim();
+  if(q) goTo('search', q);
+}
+
+// ===== RENDER =====
+function render() {
+  const app = document.getElementById('app');
+  if(currentView === 'home') app.innerHTML = renderHome();
+  else if(currentView === 'article') app.innerHTML = renderArticle(currentParam);
+  else if(currentView === 'cat') app.innerHTML = renderCat(currentParam);
+  else if(currentView === 'search') app.innerHTML = renderSearch(currentParam);
+  initAnimations();
+}
+
+function initAnimations() {
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+  },{threshold:0.07});
+  document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+  window.addEventListener('scroll',()=>{
+    const n=document.getElementById('main-nav');
+    if(n) n.style.padding = window.scrollY>60 ? '12px 48px' : '18px 48px';
+  },{passive:true});
+}
+
+// ===== HOME =====
+function renderHome() {
+  const mqs = ['SALUD HOLÍSTICA','GLOW UP GUIDE','NUTRICIÓN CONSCIENTE','SKINCARE SCIENCE','BIENESTAR MENTAL','FITNESS & FUERZA','SUEÑO REPARADOR','HÁBITOS PODEROSOS'];
+  const mq = [...mqs,...mqs].map(t=>`<span class="mi">${t} <span class="mdot">●</span></span>`).join('');
+  const catKeys = ['skincare','glowup','nutricion','fitness','mente','sueno','hormonas','biohacking','suplementos','digestion','cabello','longevidad','energia'];
+  const catCounts = {skincare:12,glowup:8,nutricion:9,fitness:7,mente:5,sueno:4,hormonas:4,biohacking:5,suplementos:3,digestion:2,cabello:2,longevidad:2,energia:1};
+
+  return `
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <p class="htag">Tu biblia de bienestar</p>
+    <h1 class="htitle">Siente tu<br><em>mejor</em><br>versión.</h1>
+    <p class="hdesc">Ciencia, rituales y estrategias reales para transformar tu salud, piel y energía desde adentro hacia afuera.</p>
+    <div class="hacts">
+      <a class="btn-primary" href="#" onclick="goTo('cat','glowup');return false">Explorar artículos</a>
+      <a class="btn-ghost" href="#" onclick="goTo('article',13);return false">Guía Glow Up →</a>
+    </div>
+    <div class="hstats">
+      <div><div class="snum">64+</div><div class="slbl">Artículos</div></div>
+      <div><div class="snum">13</div><div class="slbl">Categorías</div></div>
+      <div><div class="snum">50K</div><div class="slbl">Lectoras</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-img-grid">
+      <div class="himg bg1">🌿</div><div class="himg bg2">💧</div>
+      <div class="himg bg3">✨</div><div class="himg bg4">🌸</div>
+    </div>
+    <div class="hfloat">
+      <div class="hf-icon">🔥</div>
+      <div><div class="hf-t">Trending ahora</div><div class="hf-s">Colágeno marino vs bovino</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mwrap"><div class="mtrack">${mq}</div></div>
+
+<!-- SEARCH -->
+<div class="srch-sec fu">
+  <p class="srch-lbl">Busca entre 64+ artículos</p>
+  <div class="srch-wrap">
+    <input id="srch-in" type="text" placeholder="Ej: colágeno, retinol, sueño, meditación..." class="srch-in" onkeydown="if(event.key==='Enter'){doSearch()}">
+    <button class="srch-btn" onclick="doSearch()">Buscar</button>
+  </div>
+  <div class="ptags">
+    ${['Colágeno','Retinol','Sueño','Omega-3','Ayuno','Ansiedad','Cortisol','Proteínas','Magnesio','Vitamina D'].map(t=>`<a class="ptag" href="#" onclick="goTo('search','${t}');return false">${t}</a>`).join('')}
+  </div>
+</div>
+
+<!-- CATEGORÍAS -->
+<section class="cats-sec fu">
+  <div class="s-head"><div>
+    <p class="s-eye s-eye-lt">Explora</p>
+    <h2 class="s-title" style="color:var(--c)">Nuestras <em style="color:var(--bl)">categorías</em></h2>
+  </div></div>
+  <div class="cat-grid">
+    ${catKeys.map(k=>`<a class="cat-card ${CATS[k].bg}" href="#" onclick="goTo('cat','${k}');return false">
+      <span class="cat-ic">${CATS[k].e}</span>
+      <div class="cat-nm">${CATS[k].n}</div>
+      <div class="cat-cnt">${catCounts[k]||byCat(k).length} artículos</div>
+    </a>`).join('')}
+  </div>
+</section>
+
+<!-- DESTACADOS -->
+<section class="fu">
+  ${secHead('Destacados','Lo más <em>leído</em>','glowup',false)}
+  <div class="feat-grid">
+    <a class="acard feat-main" href="#" onclick="goTo('article',13);return false">
+      <div class="ci bg1" style="height:auto;aspect-ratio:3/4;font-size:96px">✨</div>
+      <div class="cb">
+        <span class="ct">Glow Up · 12 min</span>
+        <div class="ctitle" style="font-size:21px">La guía definitiva del glow up en 30 días</div>
+        <p style="font-size:14px;color:var(--mu);line-height:1.6;margin-top:8px">Un plan completo que combina skincare, nutrición y mentalidad para una transformación real y sostenible.</p>
+        <div class="cm" style="margin-top:8px">Lumina Editorial · 45K lecturas</div>
+        <span class="cread">Leer artículo →</span>
+      </div>
+    </a>
+    ${byIds([27,22,44,1]).map(a=>card(a)).join('')}
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Tendencia','Más <em>populares</em> hoy',null,false)}
+  <div class="tr-list">
+    ${byIds([27,13,22,42,37,50]).map((a,i)=>trItem(a,i+1)).join('')}
+  </div>
+</section>
+
+<!-- QUOTE 1 -->
+<div class="quote-sec fu">
+  <p class="bq">"El verdadero glow up no es solo estético — es <strong>energía, salud</strong> y la forma en que te mueves por el mundo."</p>
+  <p class="qa">— Lumina Editorial</p>
+</div>
+
+<!-- GLOW UP SECTION -->
+<section class="dark-sec fu">
+  ${secHead('Transformación','La guía del <em style="color:var(--bl)">Glow Up</em>','glowup',true)}
+  <div class="g4">${byCat('glowup',4).map(a=>gcard(a)).join('')}</div>
+</section>
+
+<!-- SKINCARE -->
+<section class="fu">
+  ${secHead('Skincare','Piel que <em>resplandece</em>','skincare',false)}
+  <div class="g4">${byCat('skincare',4).map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- NUTRICIÓN -->
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Nutrición','Come para <em>brillar</em>','nutricion',false)}
+  <div class="g4">${byCat('nutricion',4).map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- FITNESS -->
+<section class="dark-sec fu">
+  ${secHead('Fitness','Mueve tu <em style="color:var(--bl)">cuerpo</em>','fitness',true)}
+  <div class="g4">${byCat('fitness',4).map(a=>card(a,true)).join('')}</div>
+</section>
+
+<!-- MENTE -->
+<section class="fu">
+  ${secHead('Mente & Alma','Tu cerebro, tu <em>mayor activo</em>','mente',false)}
+  <div class="g4">${byCat('mente',4).map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- SUEÑO -->
+<section style="background:#F0EEF8" class="fu">
+  ${secHead('Sueño & Recuperación','Duerme para <em>brillar</em>','sueno',false)}
+  <div class="g4">${byCat('sueno',4).map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- TIP CARDS 1 -->
+<section class="fu">
+  ${secHead('Hábitos','Rituales que <em>transforman</em>',null,false)}
+  <div class="tip-grid">
+    ${[
+      {n:'01',ic:'🌅',t:'Rutina matutina ideal',tx:'Los primeros 60 minutos de tu día definen tu energía y humor. Luz solar, agua e hidratación antes que cafeína.',id:64},
+      {n:'02',ic:'💧',t:'Hidratación profunda',tx:'No es solo agua: el protocolo de electrolitos y timing que maximiza la hidratación celular y el brillo de tu piel.',id:5},
+      {n:'03',ic:'🌿',t:'Dieta antiinflamatoria',tx:'La inflamación silenciosa es la raíz de la mayoría de problemas de salud y piel. Estos alimentos la combaten activamente.',id:28}
+    ].map(t=>`<a class="tip-c" href="#" onclick="goTo('article',${t.id});return false">
+      <div class="tip-n">${t.n}</div>
+      <div class="tip-ic">${t.ic}</div>
+      <h3 class="tip-t">${t.t}</h3>
+      <p class="tip-tx">${t.tx}</p>
+    </a>`).join('')}
+  </div>
+</section>
+
+<!-- SKINCARE MASONRY -->
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Skincare · Todos los artículos','Todo sobre tu <em>piel</em>','skincare',false)}
+  <div class="mason">
+    ${byCat('skincare').map((a,i)=>masonCard(a,['mh2','mh1','mh3','mh1','mh2','mh3','mh1','mh2','mh3','mh1','mh2','mh1'][i]||'mh2')).join('')}
+  </div>
+</section>
+
+<!-- SUPLEMENTOS -->
+<section class="fu">
+  ${secHead('Suplementos','Los que sí <em>valen la pena</em>','suplementos',false)}
+  <div class="g3">${byCat('suplementos').map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- HORMONAS -->
+<section style="background:#FFF0EE" class="fu">
+  ${secHead('Hormonas','Entiende tu <em>cuerpo</em>','hormonas',false)}
+  <div class="g4">${byCat('hormonas').map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- BIOHACKING -->
+<section class="dark-sec fu">
+  ${secHead('Biohacking','Tecnología para tu <em style="color:var(--bl)">cuerpo</em>','biohacking',true)}
+  <div class="g4">${byCat('biohacking').map(a=>card(a,true)).join('')}</div>
+</section>
+
+<!-- NUTRICIÓN MASONRY -->
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Nutrición · Todos los artículos','Todo sobre <em>nutrición</em>','nutricion',false)}
+  <div class="mason">
+    ${byCat('nutricion').map((a,i)=>masonCard(a,['mh3','mh2','mh1','mh2','mh3','mh1','mh2','mh1','mh3'][i]||'mh2')).join('')}
+  </div>
+</section>
+
+<!-- QUOTE 2 -->
+<div class="quote-sec" style="background:#F0F5F0" class="fu">
+  <p class="bq">"La salud es el <strong>retorno</strong> de la inversión más rentable que existe."</p>
+  <p class="qa">— Lumina · Medicina Funcional</p>
+</div>
+
+<!-- GLOW UP 2 -->
+<section class="dark-sec fu">
+  ${secHead('Más Glow Up','Tu <em style="color:var(--bl)">transformación</em> completa','glowup',true)}
+  <div class="g4">${byCat('glowup').slice(4).map(a=>gcard(a)).join('')}</div>
+</section>
+
+<!-- FITNESS MASONRY -->
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Fitness · Todos los artículos','Todo sobre <em>entrenamiento</em>','fitness',false)}
+  <div class="mason">
+    ${byCat('fitness').map((a,i)=>masonCard(a,['mh2','mh3','mh1','mh2','mh1','mh3','mh2'][i]||'mh2')).join('')}
+  </div>
+</section>
+
+<!-- TOP DEL MES -->
+<section class="fu">
+  ${secHead('Top del Mes','Lo mejor de <em>marzo</em>',null,false)}
+  <div class="tr-list">
+    ${byIds([2,31,38,46,55,13]).map((a,i)=>trItem(a,i+1)).join('')}
+  </div>
+</section>
+
+<!-- DIGESTION & CABELLO -->
+<section style="background:#F5FFF5" class="fu">
+  ${secHead('Digestión','Tu segundo <em>cerebro</em>','digestion',false)}
+  <div class="g2">${byCat('digestion').map(a=>card(a)).join('')}</div>
+</section>
+
+<section class="fu">
+  ${secHead('Cabello','Pelo que <em>enamora</em>','cabello',false)}
+  <div class="g2">${byCat('cabello').map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- LONGEVIDAD -->
+<section style="background:#F0F5F0" class="fu">
+  ${secHead('Longevidad','Vivir más y <em>mejor</em>','longevidad',false)}
+  <div class="g2">${byCat('longevidad').map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- ENERGÍA -->
+<section class="fu">
+  ${secHead('Energía','Vitalidad <em>real</em>','energia',false)}
+  <div class="g4">${byCat('energia').concat(byCat('suplementos').slice(0,3)).map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- TIP CARDS 2 -->
+<section style="background:var(--d)" class="fu">
+  ${secHead('Quick Tips','Hacks de <em style="color:var(--bl)">salud</em> instantáneos',null,true)}
+  <div class="tip-grid">
+    ${[
+      {n:'04',ic:'🧪',t:'Suplementación base',tx:'Vitamina D3+K2, omega-3 y magnesio bisglicinato: los tres suplementos con mayor impacto para la mayoría de adultos.',id:56},
+      {n:'05',ic:'⚡',t:'Energía sin café',tx:'Luz solar matutina + proteína en el desayuno + hidratación: la tríada de energía natural que ningún suplemento supera.',id:64},
+      {n:'06',ic:'🫀',t:'HRV como brújula',tx:'Tu variabilidad cardíaca es el marcador más honesto de si debes entrenar intenso o recuperar hoy.',id:51}
+    ].map(t=>`<a class="tip-c" href="#" onclick="goTo('article',${t.id});return false" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)">
+      <div class="tip-n" style="color:rgba(255,255,255,.04)">${t.n}</div>
+      <div class="tip-ic">${t.ic}</div>
+      <h3 class="tip-t" style="color:white">${t.t}</h3>
+      <p class="tip-tx" style="color:rgba(255,255,255,.5)">${t.tx}</p>
+    </a>`).join('')}
+  </div>
+</section>
+
+<!-- MENTE MASONRY -->
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Mente & Alma','Todos los artículos de <em>bienestar mental</em>','mente',false)}
+  <div class="mason">
+    ${byCat('mente').map((a,i)=>masonCard(a,['mh2','mh3','mh1','mh2','mh1'][i]||'mh2')).join('')}
+  </div>
+</section>
+
+<!-- QUOTE 3 -->
+<div class="quote-sec fu">
+  <p class="bq">"La <strong>consistencia</strong> con hábitos simples siempre supera a la perfección con rituales complicados."</p>
+  <p class="qa">— Lumina · Editorial</p>
+</div>
+
+<!-- TODOS LOS ARTÍCULOS -->
+<section class="fu">
+  ${secHead('Biblioteca completa','Todos los <em>artículos</em>',null,false)}
+  <div class="g4">${ARTICLES.slice(0,16).map(a=>card(a)).join('')}</div>
+</section>
+
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Más artículos','Sigue <em>explorando</em>',null,false)}
+  <div class="g4">${ARTICLES.slice(16,32).map(a=>card(a)).join('')}</div>
+</section>
+
+<section class="fu">
+  ${secHead('Aún más','Para tu <em>bienestar total</em>',null,false)}
+  <div class="g4">${ARTICLES.slice(32,48).map(a=>card(a)).join('')}</div>
+</section>
+
+<section style="background:#F5F2ED" class="fu">
+  ${secHead('Completa tu lectura','Lo que no te puedes <em>perder</em>',null,false)}
+  <div class="g4">${ARTICLES.slice(48).map(a=>card(a)).join('')}</div>
+</section>
+
+<!-- QUOTE FINAL -->
+<div class="quote-sec" style="background:var(--d)" class="fu">
+  <p class="bq" style="color:var(--c)">"Tu cuerpo es el único lugar donde <strong style="color:var(--tc)">siempre vivirás</strong>. Trátalo como tal."</p>
+  <p class="qa" style="color:rgba(255,255,255,0.4)">— Lumina · Salud Integral</p>
+</div>
+
+<!-- TIP CARDS 3 -->
+<section class="fu">
+  ${secHead('Rutinas','Tus rutinas <em>ideales</em>',null,false)}
+  <div class="tip-grid">
+    ${[
+      {n:'07',ic:'🌅',t:'Rutina matutina',tx:'Luz solar → agua → sin pantallas 30 min → desayuno proteico → movimiento. Los 5 pasos que cambian todo.',id:64},
+      {n:'08',ic:'🌙',t:'Rutina nocturna',tx:'Sin pantallas 90 min → skincare nocturna → magnesio → 18-20°C en el dormitorio → oscuridad total.',id:43},
+      {n:'09',ic:'🥗',t:'Alimentación óptima',tx:'Desayuno proteico, almuerzo antiinflamatorio con grasas buenas, cena ligera sin carbohidratos refinados.',id:28}
+    ].map(t=>`<a class="tip-c" href="#" onclick="goTo('article',${t.id});return false">
+      <div class="tip-n">${t.n}</div>
+      <div class="tip-ic">${t.ic}</div>
+      <h3 class="tip-t">${t.t}</h3>
+      <p class="tip-tx">${t.tx}</p>
+    </a>`).join('')}
+  </div>
+</section>
+
+${nlSection()}
+${footer()}`;
+}
+
+// ===== ARTICLE PAGE =====
+function renderArticle(id) {
+  const a = ARTICLES.find(x=>x.id===id);
+  if(!a) return `<div style="padding:140px 48px;text-align:center"><h2>Artículo no encontrado</h2><br><br><a class="btn-primary" href="#" onclick="goTo('home');return false">← Volver al inicio</a></div>${footer()}`;
+  const related = ARTICLES.filter(x=>x.cat===a.cat && x.id!==a.id).slice(0,4);
+  return `<div class="art-page">
+    <a class="back-btn" href="#" onclick="goTo('home');return false">← Volver al inicio</a>
+    <span class="art-tag">${a.tag}</span>
+    <h1 class="art-title">${a.t}</h1>
+    <div class="art-meta">
+      <span>✍️ ${a.au}</span>
+      <span>📖 ${a.min} min lectura</span>
+      <span>👁 ${a.v} lecturas</span>
+      <a href="#" onclick="goTo('cat','${a.cat}');return false" style="color:var(--tc);font-weight:600;text-decoration:none">${CATS[a.cat]?.n || a.cat}</a>
+    </div>
+    <div class="art-hero ${a.bg}">${a.e}</div>
+    <div class="art-body">
+      <p>${a.p1}</p>
+      <p>${a.p2}</p>
+    </div>
+    <div class="art-tips">
+      <h3>✦ Puntos clave</h3>
+      <ul>${a.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div>
+    ${related.length ? `<div class="art-rel">
+      <h2 class="art-rel-t">También te puede interesar</h2>
+      <div class="g4">${related.map(r=>card(r)).join('')}</div>
+    </div>` : ''}
+  </div>
+  ${nlSection()}
+  ${footer()}`;
+}
+
+// ===== CATEGORY PAGE =====
+function renderCat(cat) {
+  const c = CATS[cat] || {n:cat,e:'📖',bg:'bg1',desc:'Artículos de '+cat};
+  const arts = ARTICLES.filter(a=>a.cat===cat);
+  const other = Object.keys(CATS).filter(k=>k!==cat).slice(0,6);
+  return `<div class="cat-page">
+    <a class="back-btn" href="#" onclick="goTo('home');return false">← Volver al inicio</a>
+    <div class="cat-hero">
+      <div class="cat-hero-em">${c.e}</div>
+      <h1 class="cat-hero-t"><em>${c.n}</em></h1>
+      <p class="cat-hero-s">${c.desc} · ${arts.length} artículo${arts.length!==1?'s':''}</p>
+    </div>
+    ${arts.length ? `<div class="g4">${arts.map(a=>card(a)).join('')}</div>` : `<p style="color:var(--mu);font-size:16px">Próximamente más artículos en esta categoría.</p>`}
+    <div style="margin-top:72px;padding-top:48px;border-top:1px solid rgba(0,0,0,.08)">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:24px">Explorar otras categorías</h2>
+      <div class="cat-grid" style="grid-template-columns:repeat(6,1fr)">
+        ${other.map(k=>`<a class="cat-card ${CATS[k].bg}" href="#" onclick="goTo('cat','${k}');return false">
+          <span class="cat-ic">${CATS[k].e}</span>
+          <div class="cat-nm">${CATS[k].n}</div>
+        </a>`).join('')}
+      </div>
+    </div>
+  </div>
+  ${nlSection()}
+  ${footer()}`;
+}
+
+// ===== SEARCH PAGE =====
+function renderSearch(q) {
+  const results = q === 'trending'
+    ? ARTICLES.sort((a,b)=>parseInt(b.v)-parseInt(a.v)).slice(0,16)
+    : search(q);
+  return `<div class="srch-page">
+    <a class="back-btn" href="#" onclick="goTo('home');return false">← Volver al inicio</a>
+    <div class="srch-res-t">${q==='trending' ? 'Artículos populares' : `Resultados para "${q}"`}</div>
+    <p class="srch-res-s">${results.length} artículo${results.length!==1?'s':''} encontrado${results.length!==1?'s':''}</p>
+    <div class="srch-wrap" style="max-width:580px;margin-bottom:32px;background:var(--c);border-radius:100px;padding:7px 7px 7px 22px;border:1.5px solid transparent;display:flex;gap:10px;transition:border-color .3s">
+      <input id="srch-in" type="text" value="${q!=='trending'?q:''}" placeholder="Buscar artículos..." class="srch-in" onkeydown="if(event.key==='Enter'){doSearch()}">
+      <button class="srch-btn" onclick="doSearch()">Buscar</button>
+    </div>
+    ${results.length ? `<div class="g4">${results.map(a=>card(a)).join('')}</div>`
+    : `<div style="text-align:center;padding:60px 0">
+        <p style="font-size:48px;margin-bottom:16px">🔍</p>
+        <p style="font-size:18px;color:var(--mu);margin-bottom:24px">No encontramos artículos para "${q}"</p>
+        <p style="font-size:14px;color:var(--mu)">Prueba con: colágeno, retinol, sueño, omega-3, meditación, cortisol...</p>
+      </div>`}
+    <div style="margin-top:64px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:32px">Artículos populares</h2>
+      <div class="g4">${ARTICLES.slice(0,8).map(a=>card(a)).join('')}</div>
+    </div>
+  </div>
+  ${nlSection()}
+  ${footer()}`;
+}
+
+// ===== CURSOR =====
+const cur=document.getElementById('cursor'),cring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function anim(){
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  cring.style.left=rx+'px';cring.style.top=ry+'px';
+  requestAnimationFrame(anim);
+})();
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('a,button,.acard,.cat-card,.gcard,.mason-item,.tr-item,.tip-c')){
+    cur.style.width='20px';cur.style.height='20px';
+    cring.style.width='50px';cring.style.height='50px';
+  }
+});
+document.addEventListener('mouseout',e=>{
+  if(e.target.closest('a,button,.acard,.cat-card,.gcard,.mason-item,.tr-item,.tip-c')){
+    cur.style.width='12px';cur.style.height='12px';
+    cring.style.width='36px';cring.style.height='36px';
+  }
+});
+
+// ===== INIT =====
+render();
+</script>
+</body>
+</html>
